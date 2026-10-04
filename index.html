@@ -485,6 +485,29 @@
       }
     }
 
+    .dove.is-hit .wing {
+      animation-play-state: paused;
+    }
+
+    .arrow {
+      position: fixed;
+      left: 50%;
+      top: 0;
+      z-index: 1001;
+      width: 80px;
+      height: 16px;
+      margin-left: -48px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(120vh);
+    }
+
+    .arrow svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     .toast {
       position: fixed;
       left: 50%;
@@ -769,6 +792,15 @@
     </svg>
   </div>
 
+  <!-- Arrow (used when there is an error) -->
+  <div class="arrow" id="arrow" aria-hidden="true">
+    <svg viewBox="0 0 80 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 8H66" stroke="#111111" stroke-width="2.6" stroke-linecap="round" />
+      <polygon points="62,2 80,8 62,14" fill="#111111" />
+      <path d="M1 1.5L13 8L1 14.5L5 8Z" fill="#111111" />
+    </svg>
+  </div>
+
   <!-- Message -->
   <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
@@ -1036,12 +1068,18 @@
     const easeOut = (t) => 1 - (1 - t) * (1 - t);
     const easeIn = (t) => t * t;
 
+    const arrow = $("arrow");
+
     function flyDove(ok) {
       const vh = window.innerHeight;
+      const vw = window.innerWidth;
       const startY = vh + 140;
-      const frames = [];
+      const doveFrames = [];
+      const arrowFrames = [];
       let duration;
       let i, t, y, x;
+
+      dove.classList.remove("is-hit");
 
       if (ok) {
         /* success: bottom of the screen, up and out through the top */
@@ -1052,35 +1090,66 @@
           t = i / steps;
           y = startY + (endY - startY) * easeInOut(t);
           x = Math.sin(t * Math.PI * 3) * 18;
-          frames.push({ offset: t, transform: "translate(" + x + "px, " + y + "px) rotate(-82deg)" });
+          doveFrames.push({ offset: t, transform: "translate(" + x + "px, " + y + "px) rotate(-82deg)" });
         }
       } else {
-        /* error: up, hits the top, turns round and flies back down */
-        duration = 2800;
-        const hitY = Math.max(60, vh * 0.1);
-        const turnY = hitY + 80;
+        /* error: dove flies up, an arrow shoots in from the side and hits it, the dove falls down */
+        duration = 3600;
+        const hitY = Math.max(70, vh * 0.12);
+        const turnY = hitY + 100;
         const steps = 8;
+        const arrowStartX = -(vw / 2) - 140;
+
+        /* dove climbs (0 to 0.40) */
         for (i = 0; i <= steps; i++) {
           t = i / steps;
           y = startY + (hitY - startY) * easeOut(t);
           x = Math.sin(t * Math.PI * 2) * 14;
-          frames.push({ offset: t * 0.5, transform: "translate(" + x + "px, " + y + "px) rotate(-82deg)" });
+          doveFrames.push({ offset: t * 0.4, transform: "translate(" + x + "px, " + y + "px) rotate(-82deg)" });
         }
-        frames.push({ offset: 0.54, transform: "translate(12px, " + (hitY - 14) + "px) rotate(-98deg)" });
-        frames.push({ offset: 0.58, transform: "translate(-12px, " + hitY + "px) rotate(-70deg)" });
-        frames.push({ offset: 0.66, transform: "translate(0px, " + (hitY + 30) + "px) rotate(0deg)" });
-        frames.push({ offset: 0.72, transform: "translate(0px, " + turnY + "px) rotate(98deg)" });
+        /* hovers while the arrow flies in, then gets hit at 0.52 */
+        doveFrames.push({ offset: 0.5, transform: "translate(0px, " + (hitY - 6) + "px) rotate(-82deg)" });
+        doveFrames.push({ offset: 0.52, transform: "translate(14px, " + (hitY - 12) + "px) rotate(-100deg)" });
+        doveFrames.push({ offset: 0.56, transform: "translate(-10px, " + (hitY + 4) + "px) rotate(-68deg)" });
+        doveFrames.push({ offset: 0.64, transform: "translate(0px, " + (hitY + 40) + "px) rotate(10deg)" });
+        doveFrames.push({ offset: 0.7, transform: "translate(0px, " + turnY + "px) rotate(98deg)" });
+        /* then it falls, tumbling (0.70 to 1.0) */
+        const fall = [];
         for (i = 1; i <= steps; i++) {
           t = i / steps;
-          y = turnY + (startY - turnY) * easeIn(t);
+          y = turnY + (startY + 60 - turnY) * easeIn(t);
           x = Math.sin(t * Math.PI * 2) * 14;
-          frames.push({ offset: 0.72 + 0.28 * t, transform: "translate(" + x + "px, " + y + "px) rotate(98deg)" });
+          fall.push({ offset: 0.7 + 0.3 * t, x: x, y: y, rot: 98 + 220 * t });
         }
+        fall.forEach((f) => {
+          doveFrames.push({ offset: f.offset, transform: "translate(" + f.x + "px, " + f.y + "px) rotate(" + f.rot + "deg)" });
+        });
+
+        /* arrow: hidden, flies in from the left edge, then stays stuck in the dove */
+        arrowFrames.push({ offset: 0, opacity: 0, transform: "translate(" + arrowStartX + "px, " + (hitY + 34) + "px) rotate(0deg)" });
+        arrowFrames.push({ offset: 0.38, opacity: 0, transform: "translate(" + arrowStartX + "px, " + (hitY + 34) + "px) rotate(0deg)" });
+        arrowFrames.push({ offset: 0.385, opacity: 1, transform: "translate(" + arrowStartX + "px, " + (hitY + 34) + "px) rotate(0deg)" });
+        arrowFrames.push({ offset: 0.515, opacity: 1, transform: "translate(6px, " + (hitY + 34) + "px) rotate(0deg)" });
+        arrowFrames.push({ offset: 0.52, opacity: 1, transform: "translate(20px, " + (hitY + 22) + "px) rotate(-18deg)" });
+        arrowFrames.push({ offset: 0.56, opacity: 1, transform: "translate(-4px, " + (hitY + 38) + "px) rotate(14deg)" });
+        arrowFrames.push({ offset: 0.64, opacity: 1, transform: "translate(6px, " + (hitY + 74) + "px) rotate(92deg)" });
+        arrowFrames.push({ offset: 0.7, opacity: 1, transform: "translate(6px, " + (turnY + 34) + "px) rotate(180deg)" });
+        fall.forEach((f) => {
+          arrowFrames.push({ offset: f.offset, opacity: 1, transform: "translate(" + (f.x + 6) + "px, " + (f.y + 34) + "px) rotate(" + (f.rot + 82) + "deg)" });
+        });
+
+        /* wings stop flapping the moment the arrow hits */
+        setTimeout(() => dove.classList.add("is-hit"), duration * 0.52);
       }
 
-      const animation = dove.animate(frames, { duration, easing: "linear", fill: "forwards" });
-      return animation.finished.then(() => {
-        animation.cancel();
+      const animations = [dove.animate(doveFrames, { duration, easing: "linear", fill: "forwards" })];
+      if (!ok) {
+        animations.push(arrow.animate(arrowFrames, { duration, easing: "linear", fill: "forwards" }));
+      }
+
+      return Promise.all(animations.map((a) => a.finished)).then(() => {
+        animations.forEach((a) => a.cancel());
+        dove.classList.remove("is-hit");
       });
     }
 
