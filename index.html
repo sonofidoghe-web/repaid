@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Sign in | repaid</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -208,11 +208,12 @@
     }
 
     .subtitle {
-      margin: 7px 0 0;
+      margin: 8px 0 0;
+      padding: 0 2px;
       text-align: center;
       font-size: 15px;
       font-weight: 400;
-      line-height: 24px;
+      line-height: 22px;
       color: #6b6b6b;
     }
 
@@ -228,7 +229,7 @@
     }
 
     .field + .field {
-      margin-top: 16px;
+      margin-top: 15px;
     }
 
     .field label {
@@ -262,6 +263,13 @@
 
     .field input:focus-visible {
       box-shadow: 0 0 0 2px #000000;
+    }
+
+    .hint {
+      margin: 4px 0 0;
+      font-size: 13px;
+      line-height: 18px;
+      color: #6b6b6b;
     }
 
     .password-wrap {
@@ -313,6 +321,7 @@
       font-size: 15px;
       font-weight: 600;
       line-height: 20px;
+      text-decoration: none;
       cursor: pointer;
     }
 
@@ -324,14 +333,6 @@
       outline: 2px solid #000000;
       outline-offset: 3px;
       border-radius: 4px;
-    }
-
-    .form-message {
-      margin: 12px 0 0;
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 18px;
-      color: #000000;
     }
 
     /* ---------- Buttons ---------- */
@@ -347,17 +348,12 @@
       font-size: 17px;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.15s ease, background-color 0.15s ease;
+      transition: background-color 0.15s ease;
     }
 
     .btn:focus-visible {
       outline: 2px solid #000000;
       outline-offset: 3px;
-    }
-
-    .btn:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
     }
 
     .btn-primary {
@@ -367,7 +363,7 @@
       color: #ffffff;
     }
 
-    .btn-primary:hover:not(:disabled) {
+    .btn-primary:hover {
       background: #1f1f1f;
     }
 
@@ -378,7 +374,7 @@
       color: #000000;
     }
 
-    .btn-google:hover:not(:disabled) {
+    .btn-google:hover {
       background: #f3f3f3;
     }
 
@@ -386,6 +382,14 @@
       width: 20px;
       height: 20px;
       flex: none;
+    }
+
+    .terms {
+      margin: 15px 0 0;
+      text-align: center;
+      font-size: 13px;
+      line-height: 19px;
+      color: #6b6b6b;
     }
 
     /* ---------- Footer text ---------- */
@@ -421,6 +425,99 @@
       border-radius: 24px;
     }
 
+    /* ---------- Loading overlay, dove and messages ---------- */
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .spinner {
+      width: 46px;
+      height: 46px;
+      border: 4px solid #e2e2e2;
+      border-top-color: #000000;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .dove {
+      position: fixed;
+      left: 50%;
+      top: 0;
+      z-index: 1001;
+      width: 96px;
+      height: 80px;
+      margin-left: -48px;
+      pointer-events: none;
+      will-change: transform;
+      transform: translateY(120vh);
+    }
+
+    .dove svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .wing {
+      transform-box: view-box;
+      transform-origin: 68px 52px;
+      animation: flap 0.3s ease-in-out infinite alternate;
+    }
+
+    .wing--back {
+      animation-delay: -0.15s;
+    }
+
+    @keyframes flap {
+      from {
+        transform: rotate(-18deg);
+      }
+      to {
+        transform: rotate(38deg);
+      }
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: calc(env(safe-area-inset-top, 0px) + 16px);
+      z-index: 1002;
+      max-width: min(92vw, 420px);
+      padding: 13px 20px;
+      border-radius: 14px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 21px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -16px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .toast--ok {
+      background: #16a34a;
+    }
+
+    .toast--error {
+      background: #dc2626;
+    }
+
+    .toast--show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
     /* ---------- Tablet and desktop ---------- */
 
     @media (min-width: 768px) {
@@ -442,7 +539,8 @@
     @media (prefers-reduced-motion: reduce) {
       .ring,
       .flag-inner,
-      .globe-lines {
+      .globe-lines,
+      .wing {
         animation: none !important;
       }
     }
@@ -451,7 +549,7 @@
 <body>
   <main class="page">
 
-    <!-- Globe with rolling country flags -->
+    <!-- Globe with rolling country flags (shared by every view) -->
     <div class="orbit" aria-hidden="true">
       <div class="ring-line ring-line--outer"></div>
       <div class="ring-line ring-line--inner"></div>
@@ -490,69 +588,147 @@
       <span class="brand-name">repaid</span>
     </div>
 
-    <h1 class="title">Welcome back</h1>
-    <p class="subtitle">Sign in to your repaid account</p>
+    <!-- ===================== VIEW: SIGN IN ===================== -->
+    <section id="view-login" data-title="Sign in | repaid">
+      <h1 class="title">Welcome back</h1>
+      <p class="subtitle">Sign in to your repaid account</p>
 
-    <!-- Card -->
-    <form class="card" id="login-form" novalidate>
-      <div class="field">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="name@example.com"
-          autocomplete="email"
-          inputmode="email"
-          required
-        />
-      </div>
-
-      <div class="field">
-        <label for="password">Password</label>
-        <div class="password-wrap">
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-            required
-          />
-          <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
-            <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
-              <circle cx="12" cy="12" r="3.2" />
-            </svg>
-            <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
-              <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
-              <circle cx="12" cy="12" r="3.2" />
-              <path d="M3 3l18 18" />
-            </svg>
-          </button>
+      <form class="card" id="login-form" novalidate>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="name@example.com" autocomplete="email" inputmode="email" />
         </div>
-      </div>
 
-      <div class="forgot-row">
-        <button type="button" class="link-button" id="forgot-password">Forgot password?</button>
-      </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <div class="password-wrap">
+            <input id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password" />
+            <button type="button" class="toggle-password" data-target="login-password" aria-label="Show password">
+              <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+              </svg>
+              <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+                <path d="M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-      <p class="form-message" id="form-message" role="alert" aria-live="polite" hidden></p>
+        <div class="forgot-row">
+          <a class="link-button" href="#/forgot">Forgot password?</a>
+        </div>
 
-      <button type="submit" class="btn btn-primary" id="signin-button">Sign in</button>
+        <button type="submit" class="btn btn-primary">Sign in</button>
 
-      <button type="button" class="btn btn-google" id="google-button">
-        <svg class="google-logo" viewBox="0 0 48 48" aria-hidden="true">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
-        </svg>
-        <span>Continue with Google</span>
-      </button>
-    </form>
+        <button type="button" class="btn btn-google" data-google>
+          <svg class="google-logo" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+      </form>
 
-    <p class="footer-text">Don't have an account? <a href="signup.html">Create one</a></p>
+      <p class="footer-text">Don't have an account? <a href="#/signup">Create one</a></p>
+    </section>
+
+    <!-- ===================== VIEW: CREATE ACCOUNT ===================== -->
+    <section id="view-signup" data-title="Create account | repaid" hidden>
+      <h1 class="title">Create your account</h1>
+      <p class="subtitle">Join repaid and start in minutes.</p>
+
+      <form class="card" id="signup-form" novalidate>
+        <div class="field">
+          <label for="signup-name">Full name</label>
+          <input id="signup-name" type="text" placeholder="John Doe" autocomplete="name" />
+        </div>
+
+        <div class="field">
+          <label for="signup-email">Email</label>
+          <input id="signup-email" type="email" placeholder="name@example.com" autocomplete="email" inputmode="email" />
+        </div>
+
+        <div class="field">
+          <label for="signup-password">Password</label>
+          <div class="password-wrap">
+            <input id="signup-password" type="password" placeholder="Create a strong password" autocomplete="new-password" />
+            <button type="button" class="toggle-password" data-target="signup-password" aria-label="Show password">
+              <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+              </svg>
+              <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+                <path d="M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
+          <p class="hint">At least 8 characters, with letters and numbers</p>
+        </div>
+
+        <div class="field">
+          <label for="signup-confirm">Confirm password</label>
+          <div class="password-wrap">
+            <input id="signup-confirm" type="password" placeholder="Confirm your password" autocomplete="new-password" />
+            <button type="button" class="toggle-password" data-target="signup-confirm" aria-label="Show password">
+              <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+              </svg>
+              <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+                <circle cx="12" cy="12" r="3.2" />
+                <path d="M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="signup-referral">Referral code (optional)</label>
+          <input id="signup-referral" type="text" placeholder="e.g. REP4F2A9C" autocomplete="off" autocapitalize="characters" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create account</button>
+
+        <button type="button" class="btn btn-google" data-google>
+          <svg class="google-logo" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+
+        <p class="terms">By creating an account you agree to our Terms and Privacy Policy.</p>
+      </form>
+
+      <p class="footer-text">Already have an account? <a href="#/login">Sign in</a></p>
+    </section>
+
+    <!-- ===================== VIEW: FORGOT PASSWORD ===================== -->
+    <section id="view-forgot" data-title="Reset password | repaid" hidden>
+      <h1 class="title">Forgot your password?</h1>
+      <p class="subtitle">Enter the email you signed up with and we’ll send you a link to reset it.</p>
+
+      <form class="card" id="forgot-form" novalidate>
+        <div class="field">
+          <label for="forgot-email">Email</label>
+          <input id="forgot-email" type="email" placeholder="name@example.com" autocomplete="email" inputmode="email" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send reset link</button>
+      </form>
+
+      <p class="footer-text">Remembered it? <a href="#/login">Sign in</a></p>
+    </section>
 
     <!-- Closing image: person holding a phone (vector, stays sharp at any size) -->
     <figure class="closing-image">
@@ -560,22 +736,18 @@
         <rect width="360" height="320" rx="24" fill="#f2f2f2" />
         <circle cx="180" cy="150" r="118" fill="#e6e6e6" />
 
-        <!-- body -->
         <path d="M70 320C70 250 118 218 180 218C242 218 290 250 290 320Z" fill="#000000" />
         <path d="M156 218C160 236 170 244 180 244C190 244 200 236 204 218Z" fill="#ffffff" />
         <rect x="167" y="186" width="26" height="36" rx="10" fill="#d4d4d4" />
 
-        <!-- head -->
         <ellipse cx="180" cy="150" rx="40" ry="46" fill="#e0e0e0" />
         <path d="M138 146C134 100 160 88 182 88C208 88 228 106 222 146C214 124 198 116 180 116C162 116 146 124 138 146Z" fill="#000000" />
         <circle cx="166" cy="152" r="2.8" fill="#000000" />
         <circle cx="194" cy="152" r="2.8" fill="#000000" />
         <path d="M168 170Q180 180 192 170" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" />
 
-        <!-- arm raised -->
         <path d="M262 320L262 262" stroke="#000000" stroke-width="40" stroke-linecap="round" />
 
-        <!-- phone -->
         <rect x="236" y="162" width="62" height="112" rx="12" fill="#000000" />
         <rect x="241" y="168" width="52" height="100" rx="8" fill="#ffffff" />
         <circle cx="267" cy="200" r="12" fill="#000000" />
@@ -583,12 +755,32 @@
         <rect x="252" y="222" width="30" height="5" rx="2.5" fill="#cfcfcf" />
         <rect x="256" y="232" width="22" height="5" rx="2.5" fill="#e2e2e2" />
 
-        <!-- hand over phone -->
         <rect x="240" y="244" width="54" height="30" rx="15" fill="#e0e0e0" />
         <path d="M252 246V262M264 246V264M276 246V262" stroke="#c4c4c4" stroke-width="2" stroke-linecap="round" />
       </svg>
     </figure>
   </main>
+
+  <!-- Loading spinner overlay -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="spinner" id="spinner" role="status" aria-label="Loading"></div>
+  </div>
+
+  <!-- Dove -->
+  <div class="dove" id="dove" aria-hidden="true">
+    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <g class="wing wing--back"><path d="M60 52C50 28 64 12 90 8C80 20 80 36 76 54Z" fill="#6b6b6b" /></g>
+      <path d="M34 56L4 50L12 60L2 70L38 68Z" fill="#111111" />
+      <path d="M30 60C30 46 48 40 66 44C80 47 90 54 92 62C82 72 56 78 40 70C34 67 30 64 30 60Z" fill="#111111" />
+      <circle cx="90" cy="44" r="10" fill="#111111" />
+      <path d="M99 43L112 47L99 50Z" fill="#111111" />
+      <circle cx="94" cy="41" r="1.8" fill="#ffffff" />
+      <g class="wing"><path d="M62 50C52 24 68 6 96 2C84 16 84 34 80 54Z" fill="#111111" /></g>
+    </svg>
+  </div>
+
+  <!-- Message -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
   <!-- ===== Rolling country flags ===== -->
   <script>
@@ -745,17 +937,27 @@
     })();
   </script>
 
-  <!-- ===== Firebase sign in ===== -->
+  <!-- ===== Pages, Firebase, loading dove and messages ===== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
     import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
     import {
       getAuth,
       signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      updateProfile,
       signInWithPopup,
       GoogleAuthProvider,
       sendPasswordResetEmail
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+    /* ---------- Firebase ---------- */
 
     const firebaseConfig = {
       apiKey: "AIzaSyC42fUKbNURnKeZR5KLjrAk9StZSbaUB9g",
@@ -769,6 +971,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
     isSupported()
       .then((supported) => {
@@ -776,27 +979,158 @@
       })
       .catch(() => {});
 
-    /* Where to send the user after a successful sign in.
-       Change this to the page you build next. */
-    const REDIRECT_URL = "dashboard.html";
+    /* Page to open after a successful sign in or sign up.
+       Leave empty to stay on this page until the next page is built. */
+    const REDIRECT_URL = "";
 
-    const form = document.getElementById("login-form");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const signinButton = document.getElementById("signin-button");
-    const googleButton = document.getElementById("google-button");
-    const forgotButton = document.getElementById("forgot-password");
-    const toggleButton = document.getElementById("toggle-password");
-    const message = document.getElementById("form-message");
+    /* ---------- Helpers ---------- */
 
-    function showMessage(text) {
-      message.textContent = text;
-      message.hidden = !text;
+    const $ = (id) => document.getElementById(id);
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Page switching (#/login, #/signup, #/forgot) ---------- */
+
+    const views = {
+      login: $("view-login"),
+      signup: $("view-signup"),
+      forgot: $("view-forgot")
+    };
+
+    function route() {
+      const name = location.hash.replace(/^#\/?/, "");
+      const current = views[name] ? name : "login";
+      Object.keys(views).forEach((key) => {
+        views[key].hidden = key !== current;
+      });
+      document.title = views[current].dataset.title;
+      window.scrollTo(0, 0);
     }
 
-    function setBusy(busy) {
-      signinButton.disabled = busy;
-      googleButton.disabled = busy;
+    window.addEventListener("hashchange", route);
+    route();
+
+    /* ---------- Show / hide password ---------- */
+
+    document.querySelectorAll(".toggle-password").forEach((button) => {
+      button.addEventListener("click", () => {
+        const input = $(button.dataset.target);
+        const showing = input.type === "text";
+        input.type = showing ? "password" : "text";
+        button.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+        button.querySelector(".icon-eye").hidden = !showing;
+        button.querySelector(".icon-eye-off").hidden = showing;
+      });
+    });
+
+    /* ---------- Messages (green = success, red = error, 3 seconds) ---------- */
+
+    const toast = $("toast");
+    let toastTimer;
+
+    function showToast(text, ok) {
+      clearTimeout(toastTimer);
+      toast.textContent = text;
+      toast.className = "toast " + (ok ? "toast--ok" : "toast--error") + " toast--show";
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("toast--show");
+      }, 3000);
+    }
+
+    /* ---------- Dove ---------- */
+
+    const overlay = $("overlay");
+    const spinner = $("spinner");
+    const dove = $("dove");
+
+    const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    const easeOut = (t) => 1 - (1 - t) * (1 - t);
+    const easeIn = (t) => t * t;
+
+    function flyDove(ok) {
+      if (reduceMotion) return Promise.resolve();
+
+      const vh = window.innerHeight;
+      const startY = vh + 140;
+      const frames = [];
+      let duration;
+      let i, t, y, x;
+
+      if (ok) {
+        /* success: bottom of the screen, up and out through the top */
+        duration = 1900;
+        const endY = -220;
+        const steps = 12;
+        for (i = 0; i <= steps; i++) {
+          t = i / steps;
+          y = startY + (endY - startY) * easeInOut(t);
+          x = Math.sin(t * Math.PI * 3) * 18;
+          frames.push({ offset: t, transform: "translate(" + x + "px, " + y + "px) rotate(-82deg)" });
+        }
+      } else {
+        /* error: up, hits the top, turns round and flies back down */
+        duration = 2800;
+        const hitY = Math.max(60, vh * 0.1);
+        const turnY = hitY + 80;
+        const steps = 8;
+        for (i = 0; i <= steps; i++) {
+          t = i / steps;
+          y = startY + (hitY - startY) * easeOut(t);
+          x = Math.sin(t * Math.PI * 2) * 14;
+          frames.push({ offset: t * 0.5, transform: "translate(" + x + "px, " + y + "px) rotate(-82deg)" });
+        }
+        frames.push({ offset: 0.54, transform: "translate(12px, " + (hitY - 14) + "px) rotate(-98deg)" });
+        frames.push({ offset: 0.58, transform: "translate(-12px, " + hitY + "px) rotate(-70deg)" });
+        frames.push({ offset: 0.66, transform: "translate(0px, " + (hitY + 30) + "px) rotate(0deg)" });
+        frames.push({ offset: 0.72, transform: "translate(0px, " + turnY + "px) rotate(98deg)" });
+        for (i = 1; i <= steps; i++) {
+          t = i / steps;
+          y = turnY + (startY - turnY) * easeIn(t);
+          x = Math.sin(t * Math.PI * 2) * 14;
+          frames.push({ offset: 0.72 + 0.28 * t, transform: "translate(" + x + "px, " + y + "px) rotate(98deg)" });
+        }
+      }
+
+      const animation = dove.animate(frames, { duration, easing: "linear", fill: "forwards" });
+      return animation.finished.then(() => {
+        animation.cancel();
+      });
+    }
+
+    /* ---------- Run an action: spinner, dove, then message ---------- */
+
+    let busy = false;
+
+    async function runAction({ task, successText, onSuccess }) {
+      if (busy) return;
+      busy = true;
+
+      overlay.hidden = false;
+      spinner.hidden = false;
+
+      const [result] = await Promise.allSettled([task(), wait(600)]);
+
+      let ok = true;
+      let text = successText;
+
+      if (result.status === "rejected") {
+        const code = result.reason && result.reason.code;
+        if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") {
+          overlay.hidden = true;
+          busy = false;
+          return;
+        }
+        ok = false;
+        text = friendlyError(result.reason);
+      }
+
+      spinner.hidden = true;
+      await flyDove(ok);
+      overlay.hidden = true;
+      showToast(text, ok);
+      busy = false;
+
+      if (ok && onSuccess) setTimeout(onSuccess, 3000);
     }
 
     function friendlyError(error) {
@@ -809,6 +1143,10 @@
         case "auth/wrong-password":
         case "auth/user-not-found":
           return "Incorrect email or password.";
+        case "auth/email-already-in-use":
+          return "An account with this email already exists.";
+        case "auth/weak-password":
+          return "Password is too weak. Use at least 8 characters.";
         case "auth/user-disabled":
           return "This account has been disabled.";
         case "auth/too-many-requests":
@@ -818,7 +1156,7 @@
         case "auth/popup-blocked":
           return "Your browser blocked the Google window. Allow pop-ups and try again.";
         case "auth/unauthorized-domain":
-          return "This domain is not authorized in Firebase. Add it under Authentication > Settings > Authorized domains.";
+          return "This domain is not authorized in Firebase yet.";
         case "auth/operation-not-allowed":
           return "This sign-in method is not enabled in Firebase yet.";
         default:
@@ -827,80 +1165,101 @@
     }
 
     function goNext() {
-      window.location.href = REDIRECT_URL;
+      if (REDIRECT_URL) window.location.href = REDIRECT_URL;
     }
 
-    toggleButton.addEventListener("click", () => {
-      const showing = passwordInput.type === "text";
-      passwordInput.type = showing ? "password" : "text";
-      toggleButton.setAttribute("aria-label", showing ? "Show password" : "Hide password");
-      toggleButton.querySelector(".icon-eye").hidden = !showing;
-      toggleButton.querySelector(".icon-eye-off").hidden = showing;
-    });
+    function invalid(text, input) {
+      showToast(text, false);
+      if (input) input.focus();
+    }
 
-    form.addEventListener("submit", async (event) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    /* ---------- Sign in ---------- */
+
+    $("login-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      showMessage("");
-
+      const emailInput = $("login-email");
+      const passwordInput = $("login-password");
       const email = emailInput.value.trim();
       const password = passwordInput.value;
 
-      if (!email) {
-        showMessage("Enter your email address.");
-        emailInput.focus();
-        return;
-      }
-      if (!password) {
-        showMessage("Enter your password.");
-        passwordInput.focus();
-        return;
-      }
+      if (!emailPattern.test(email)) return invalid("Enter a valid email address.", emailInput);
+      if (!password) return invalid("Enter your password.", passwordInput);
 
-      setBusy(true);
-      signinButton.textContent = "Signing in...";
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        goNext();
-      } catch (error) {
-        showMessage(friendlyError(error));
-        setBusy(false);
-        signinButton.textContent = "Sign in";
-      }
+      runAction({
+        task: () => signInWithEmailAndPassword(auth, email, password),
+        successText: "Signed in successfully.",
+        onSuccess: goNext
+      });
     });
 
-    googleButton.addEventListener("click", async () => {
-      showMessage("");
-      setBusy(true);
+    /* ---------- Create account ---------- */
 
-      try {
-        const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
-        goNext();
-      } catch (error) {
-        if (error.code !== "auth/popup-closed-by-user" && error.code !== "auth/cancelled-popup-request") {
-          showMessage(friendlyError(error));
-        }
-        setBusy(false);
+    $("signup-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const nameInput = $("signup-name");
+      const emailInput = $("signup-email");
+      const passwordInput = $("signup-password");
+      const confirmInput = $("signup-confirm");
+
+      const fullName = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const referral = $("signup-referral").value.trim();
+
+      if (!fullName) return invalid("Enter your full name.", nameInput);
+      if (!emailPattern.test(email)) return invalid("Enter a valid email address.", emailInput);
+      if (password.length < 8 || !/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+        return invalid("Password needs at least 8 characters, with letters and numbers.", passwordInput);
       }
+      if (password !== confirmInput.value) return invalid("Passwords do not match.", confirmInput);
+
+      runAction({
+        task: async () => {
+          const credential = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(credential.user, { displayName: fullName });
+          try {
+            await setDoc(doc(db, "users", credential.user.uid), {
+              fullName: fullName,
+              email: email,
+              referralCode: referral || null,
+              createdAt: serverTimestamp()
+            });
+          } catch (error) {
+            console.warn("Account created, but the profile could not be saved to Firestore:", error);
+          }
+        },
+        successText: "Account created successfully.",
+        onSuccess: goNext
+      });
     });
 
-    forgotButton.addEventListener("click", async () => {
-      showMessage("");
+    /* ---------- Continue with Google (sign in and create account) ---------- */
+
+    document.querySelectorAll("[data-google]").forEach((button) => {
+      button.addEventListener("click", () => {
+        runAction({
+          task: () => signInWithPopup(auth, new GoogleAuthProvider()),
+          successText: "Signed in with Google.",
+          onSuccess: goNext
+        });
+      });
+    });
+
+    /* ---------- Send reset link ---------- */
+
+    $("forgot-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const emailInput = $("forgot-email");
       const email = emailInput.value.trim();
 
-      if (!email) {
-        showMessage("Enter your email above, then tap Forgot password.");
-        emailInput.focus();
-        return;
-      }
+      if (!emailPattern.test(email)) return invalid("Enter a valid email address.", emailInput);
 
-      try {
-        await sendPasswordResetEmail(auth, email);
-        showMessage("Password reset email sent. Check your inbox.");
-      } catch (error) {
-        showMessage(friendlyError(error));
-      }
+      runAction({
+        task: () => sendPasswordResetEmail(auth, email),
+        successText: "Reset link sent. Check your email."
+      });
     });
   </script>
 </body>
