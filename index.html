@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in | repaid</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      background: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #ffffff;
+      color: #000000;
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    /* ---------- Page column ---------- */
+
+    .page {
+      width: 100%;
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    /* ---------- Globe + rolling flags ---------- */
+
+    .orbit {
+      container-type: size;
+      position: relative;
+      width: min(100%, 300px);
+      aspect-ratio: 1 / 1;
+      margin: 0 auto 8px;
+    }
+
+    .ring-line {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+    }
+
+    .ring-line--outer {
+      width: 88cqw;
+      height: 88cqw;
+      margin: -44cqw 0 0 -44cqw;
+      border: 1px solid #d9d9d9;
+    }
+
+    .ring-line--inner {
+      width: 65.4cqw;
+      height: 65.4cqw;
+      margin: -32.7cqw 0 0 -32.7cqw;
+      border: 1px dashed #cfcfcf;
+    }
+
+    .globe {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 44cqw;
+      height: 44cqw;
+      margin: -22cqw 0 0 -22cqw;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .globe svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .globe-lines {
+      transform-box: view-box;
+      transform-origin: 50% 50%;
+      animation: spin 70s linear infinite reverse;
+    }
+
+    .ring {
+      position: absolute;
+      inset: 0;
+    }
+
+    .ring--outer {
+      --r: 44cqw;
+      --fs: 10.7cqw;
+      animation: spin 60s linear infinite;
+    }
+
+    .ring--inner {
+      --r: 32.7cqw;
+      --fs: 8cqw;
+      animation: spin 45s linear infinite reverse;
+    }
+
+    .flag {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: var(--fs);
+      height: var(--fs);
+      margin: calc(var(--fs) / -2) 0 0 calc(var(--fs) / -2);
+      transform: rotate(var(--a)) translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1));
+    }
+
+    .flag-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ffffff;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 1px #d4d4d4, 0 2px 8px rgba(0, 0, 0, 0.18);
+    }
+
+    .flag-inner svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    /* keep flags upright while the ring turns */
+    .ring--outer .flag-inner {
+      animation: spin 60s linear infinite reverse;
+    }
+
+    .ring--inner .flag-inner {
+      animation: spin 45s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ---------- Brand ---------- */
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 32px;
+      margin-top: 8px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #000000;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1;
+      padding-right: 1px;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -0.2px;
+    }
+
+    /* ---------- Heading ---------- */
+
+    .title {
+      margin: 33px 0 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 36px;
+      letter-spacing: -0.3px;
+    }
+
+    .subtitle {
+      margin: 7px 0 0;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #6b6b6b;
+    }
+
+    /* ---------- Card ---------- */
+
+    .card {
+      margin-top: 25px;
+      padding: 19px 20px 19px;
+      background: #fafafa;
+      border: 1px solid #e3e3e3;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    }
+
+    .field + .field {
+      margin-top: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      color: #000000;
+    }
+
+    .field input {
+      display: block;
+      width: 100%;
+      height: 48px;
+      padding: 0 17px;
+      border: 0;
+      border-radius: 16px;
+      background: #efefef;
+      color: #000000;
+      font-size: 16px;
+      font-weight: 400;
+      outline: none;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .field input::placeholder {
+      color: #8a8a8a;
+      opacity: 1;
+    }
+
+    .field input:focus-visible {
+      box-shadow: 0 0 0 2px #000000;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 52px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 52px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      background: transparent;
+      color: #6b6b6b;
+      cursor: pointer;
+    }
+
+    .toggle-password svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .toggle-password:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: -2px;
+    }
+
+    .forgot-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 11px;
+    }
+
+    .link-button {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 20px;
+      cursor: pointer;
+    }
+
+    .link-button:hover {
+      text-decoration: underline;
+    }
+
+    .link-button:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .form-message {
+      margin: 12px 0 0;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 18px;
+      color: #000000;
+    }
+
+    /* ---------- Buttons ---------- */
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 48px;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid #000000;
+      outline-offset: 3px;
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      margin-top: 24px;
+      border: 0;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #1f1f1f;
+    }
+
+    .btn-google {
+      margin-top: 12px;
+      border: 1.5px solid #000000;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .btn-google:hover:not(:disabled) {
+      background: #f3f3f3;
+    }
+
+    .google-logo {
+      width: 20px;
+      height: 20px;
+      flex: none;
+    }
+
+    /* ---------- Footer text ---------- */
+
+    .footer-text {
+      margin: 21px 0 0;
+      text-align: center;
+      font-size: 15px;
+      line-height: 24px;
+      color: #6b6b6b;
+    }
+
+    .footer-text a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- Bottom image ---------- */
+
+    .closing-image {
+      margin: 48px 0 0;
+    }
+
+    .closing-image svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+    }
+
+    /* ---------- Tablet and desktop ---------- */
+
+    @media (min-width: 768px) {
+      .page {
+        max-width: 440px;
+        padding-top: 40px;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .page {
+        max-width: 460px;
+        padding-top: 48px;
+      }
+    }
+
+    /* ---------- Reduced motion ---------- */
+
+    @media (prefers-reduced-motion: reduce) {
+      .ring,
+      .flag-inner,
+      .globe-lines {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- Globe with rolling country flags -->
+    <div class="orbit" aria-hidden="true">
+      <div class="ring-line ring-line--outer"></div>
+      <div class="ring-line ring-line--inner"></div>
+
+      <div class="globe">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="globeFill" cx="35%" cy="30%" r="75%">
+              <stop offset="0" stop-color="#666666" />
+              <stop offset="1" stop-color="#000000" />
+            </radialGradient>
+            <clipPath id="globeClip">
+              <circle cx="50" cy="50" r="50" />
+            </clipPath>
+          </defs>
+          <circle cx="50" cy="50" r="50" fill="url(#globeFill)" />
+          <g clip-path="url(#globeClip)">
+            <g class="globe-lines" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="0.6">
+              <ellipse cx="50" cy="50" rx="50" ry="14" transform="rotate(-25 50 50)" />
+              <ellipse cx="50" cy="50" rx="50" ry="22" transform="rotate(12 50 50)" />
+              <ellipse cx="50" cy="50" rx="50" ry="30" transform="rotate(-50 50 50)" />
+              <ellipse cx="50" cy="50" rx="50" ry="8" transform="rotate(40 50 50)" />
+              <ellipse cx="50" cy="50" rx="50" ry="38" transform="rotate(75 50 50)" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="ring ring--outer" id="ring-outer"></div>
+      <div class="ring ring--inner" id="ring-inner"></div>
+    </div>
+
+    <!-- Brand -->
+    <div class="brand">
+      <span class="brand-mark">r</span>
+      <span class="brand-name">repaid</span>
+    </div>
+
+    <h1 class="title">Welcome back</h1>
+    <p class="subtitle">Sign in to your repaid account</p>
+
+    <!-- Card -->
+    <form class="card" id="login-form" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="name@example.com"
+          autocomplete="email"
+          inputmode="email"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          />
+          <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
+            <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+              <circle cx="12" cy="12" r="3.2" />
+            </svg>
+            <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+              <path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" />
+              <circle cx="12" cy="12" r="3.2" />
+              <path d="M3 3l18 18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="forgot-row">
+        <button type="button" class="link-button" id="forgot-password">Forgot password?</button>
+      </div>
+
+      <p class="form-message" id="form-message" role="alert" aria-live="polite" hidden></p>
+
+      <button type="submit" class="btn btn-primary" id="signin-button">Sign in</button>
+
+      <button type="button" class="btn btn-google" id="google-button">
+        <svg class="google-logo" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+        </svg>
+        <span>Continue with Google</span>
+      </button>
+    </form>
+
+    <p class="footer-text">Don't have an account? <a href="signup.html">Create one</a></p>
+
+    <!-- Closing image: person holding a phone (vector, stays sharp at any size) -->
+    <figure class="closing-image">
+      <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A person smiling while holding a phone showing a completed payment">
+        <rect width="360" height="320" rx="24" fill="#f2f2f2" />
+        <circle cx="180" cy="150" r="118" fill="#e6e6e6" />
+
+        <!-- body -->
+        <path d="M70 320C70 250 118 218 180 218C242 218 290 250 290 320Z" fill="#000000" />
+        <path d="M156 218C160 236 170 244 180 244C190 244 200 236 204 218Z" fill="#ffffff" />
+        <rect x="167" y="186" width="26" height="36" rx="10" fill="#d4d4d4" />
+
+        <!-- head -->
+        <ellipse cx="180" cy="150" rx="40" ry="46" fill="#e0e0e0" />
+        <path d="M138 146C134 100 160 88 182 88C208 88 228 106 222 146C214 124 198 116 180 116C162 116 146 124 138 146Z" fill="#000000" />
+        <circle cx="166" cy="152" r="2.8" fill="#000000" />
+        <circle cx="194" cy="152" r="2.8" fill="#000000" />
+        <path d="M168 170Q180 180 192 170" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" />
+
+        <!-- arm raised -->
+        <path d="M262 320L262 262" stroke="#000000" stroke-width="40" stroke-linecap="round" />
+
+        <!-- phone -->
+        <rect x="236" y="162" width="62" height="112" rx="12" fill="#000000" />
+        <rect x="241" y="168" width="52" height="100" rx="8" fill="#ffffff" />
+        <circle cx="267" cy="200" r="12" fill="#000000" />
+        <path d="M261 200L265.5 204.5L273.5 195.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+        <rect x="252" y="222" width="30" height="5" rx="2.5" fill="#cfcfcf" />
+        <rect x="256" y="232" width="22" height="5" rx="2.5" fill="#e2e2e2" />
+
+        <!-- hand over phone -->
+        <rect x="240" y="244" width="54" height="30" rx="15" fill="#e0e0e0" />
+        <path d="M252 246V262M264 246V264M276 246V262" stroke="#c4c4c4" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </figure>
+  </main>
+
+  <!-- ===== Rolling country flags ===== -->
+  <script>
+    (function () {
+      "use strict";
+
+      function star(cx, cy, r, fill) {
+        var pts = [];
+        for (var i = 0; i < 10; i++) {
+          var rad = i % 2 === 0 ? r : r * 0.4;
+          var ang = -Math.PI / 2 + (i * Math.PI) / 5;
+          pts.push((cx + rad * Math.cos(ang)).toFixed(2) + "," + (cy + rad * Math.sin(ang)).toFixed(2));
+        }
+        return '<polygon points="' + pts.join(" ") + '" fill="' + fill + '"/>';
+      }
+
+      function unionJack() {
+        return (
+          '<rect width="90" height="60" fill="#012169"/>' +
+          '<path d="M0 0L90 60M90 0L0 60" stroke="#fff" stroke-width="10"/>' +
+          '<path d="M0 0L90 60M90 0L0 60" stroke="#c8102e" stroke-width="4"/>' +
+          '<path d="M45 0V60M0 30H90" stroke="#fff" stroke-width="20"/>' +
+          '<path d="M45 0V60M0 30H90" stroke="#c8102e" stroke-width="12"/>'
+        );
+      }
+
+      function bands(colors, vertical) {
+        var out = "";
+        var n = colors.length;
+        for (var i = 0; i < n; i++) {
+          if (vertical) {
+            out += '<rect x="' + (i * 90) / n + '" y="0" width="' + 90 / n + '" height="60" fill="' + colors[i] + '"/>';
+          } else {
+            out += '<rect x="0" y="' + (i * 60) / n + '" width="90" height="' + 60 / n + '" fill="' + colors[i] + '"/>';
+          }
+        }
+        return out;
+      }
+
+      var flags = {};
+
+      (function () {
+        var us = '<rect width="90" height="60" fill="#fff"/>';
+        var i, r, c;
+        for (i = 0; i < 7; i++) {
+          us += '<rect y="' + ((i * 2 * 60) / 13).toFixed(2) + '" width="90" height="' + (60 / 13).toFixed(2) + '" fill="#b22234"/>';
+        }
+        us += '<rect width="40" height="32.3" fill="#3c3b6e"/>';
+        for (r = 0; r < 4; r++) {
+          for (c = 0; c < 5; c++) {
+            us += '<circle cx="' + (4.5 + c * 8) + '" cy="' + (5 + r * 7.5) + '" r="1.3" fill="#fff"/>';
+          }
+        }
+        flags.US = us;
+      })();
+
+      flags.BR =
+        '<rect width="90" height="60" fill="#009c3b"/>' +
+        '<polygon points="45,6 82,30 45,54 8,30" fill="#ffdf00"/>' +
+        '<circle cx="45" cy="30" r="13" fill="#002776"/>' +
+        '<path d="M33 29Q45 24 57 33" stroke="#fff" stroke-width="2.6" fill="none"/>';
+
+      flags.KE =
+        '<rect width="90" height="60" fill="#fff"/>' +
+        '<rect width="90" height="17" fill="#000"/>' +
+        '<rect y="20" width="90" height="20" fill="#bb0000"/>' +
+        '<rect y="43" width="90" height="17" fill="#006600"/>' +
+        '<ellipse cx="45" cy="30" rx="7" ry="14" fill="#000"/>' +
+        '<ellipse cx="45" cy="30" rx="4.5" ry="10.5" fill="#bb0000"/>' +
+        '<rect x="44.5" y="12" width="1" height="36" fill="#fff"/>';
+
+      flags.GB = unionJack();
+
+      flags.ZA =
+        '<rect width="90" height="30" fill="#e03c31"/>' +
+        '<rect y="30" width="90" height="30" fill="#001489"/>' +
+        '<path d="M-5 -2L38 30L-5 62M38 30H95" stroke="#fff" stroke-width="17" fill="none"/>' +
+        '<path d="M-5 -2L38 30L-5 62M38 30H95" stroke="#007749" stroke-width="10" fill="none"/>' +
+        '<polygon points="0,10 0,50 24,30" fill="#000" stroke="#ffb81c" stroke-width="3"/>';
+
+      flags.CA =
+        '<rect width="90" height="60" fill="#fff"/>' +
+        '<rect width="22" height="60" fill="#d52b1e"/>' +
+        '<rect x="68" width="22" height="60" fill="#d52b1e"/>' +
+        '<path d="M45 12L48 21L53 19L51 29L57 26L55 33L61 37L46 40L46.5 50L43.5 50L44 40L29 37L35 33L33 26L39 29L37 19L42 21Z" fill="#d52b1e"/>';
+
+      flags.AU =
+        '<rect width="90" height="60" fill="#00247d"/>' +
+        '<svg x="0" y="0" width="45" height="30" viewBox="0 0 90 60">' + unionJack() + "</svg>" +
+        star(22, 46, 6.5, "#fff") +
+        star(60, 14, 3.2, "#fff") +
+        star(72, 28, 3.2, "#fff") +
+        star(60, 46, 3.2, "#fff") +
+        star(51, 31, 3.2, "#fff");
+
+      flags.GH = bands(["#ce1126", "#fcd116", "#006b3f"], false) + star(45, 30, 10, "#000");
+
+      flags.NG = bands(["#008751", "#ffffff", "#008751"], true);
+
+      (function () {
+        var spokes = "";
+        for (var k = 0; k < 12; k++) {
+          var a = (k * Math.PI) / 6;
+          spokes += '<line x1="45" y1="30" x2="' + (45 + 7 * Math.cos(a)).toFixed(2) + '" y2="' + (30 + 7 * Math.sin(a)).toFixed(2) + '" stroke="#000080" stroke-width="0.7"/>';
+        }
+        flags.IN =
+          bands(["#ff9933", "#ffffff", "#138808"], false) +
+          '<circle cx="45" cy="30" r="7" fill="none" stroke="#000080" stroke-width="1.2"/>' +
+          spokes;
+      })();
+
+      flags.DE = bands(["#000000", "#dd0000", "#ffce00"], false);
+
+      flags.FR = bands(["#0055a4", "#ffffff", "#ef4135"], true);
+
+      flags.JP =
+        '<rect width="90" height="60" fill="#fff"/>' +
+        '<circle cx="45" cy="30" r="18" fill="#bc002d"/>';
+
+      flags.IT = bands(["#009246", "#ffffff", "#ce2b37"], true);
+
+      flags.AE =
+        '<rect width="90" height="20" fill="#00732f"/>' +
+        '<rect y="20" width="90" height="20" fill="#fff"/>' +
+        '<rect y="40" width="90" height="20" fill="#000"/>' +
+        '<rect width="24" height="60" fill="#ff0000"/>';
+
+      var outerList = ["US", "BR", "KE", "GB", "ZA", "CA", "AU", "GH", "NG", "IN"];
+      var innerList = ["DE", "FR", "JP", "AE", "IT"];
+
+      function fill(ringId, list, startAngle) {
+        var ring = document.getElementById(ringId);
+        if (!ring) return;
+        list.forEach(function (code, i) {
+          var angle = startAngle + (i * 360) / list.length;
+          var flag = document.createElement("div");
+          flag.className = "flag";
+          flag.style.setProperty("--a", angle + "deg");
+
+          var inner = document.createElement("div");
+          inner.className = "flag-inner";
+          inner.innerHTML =
+            '<svg viewBox="0 0 90 60" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">' +
+            flags[code] +
+            "</svg>";
+
+          flag.appendChild(inner);
+          ring.appendChild(flag);
+        });
+      }
+
+      fill("ring-outer", outerList, -20);
+      fill("ring-inner", innerList, 20);
+    })();
+  </script>
+
+  <!-- ===== Firebase sign in ===== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+    import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      signInWithPopup,
+      GoogleAuthProvider,
+      sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC42fUKbNURnKeZR5KLjrAk9StZSbaUB9g",
+      authDomain: "repaid-edef4.firebaseapp.com",
+      projectId: "repaid-edef4",
+      storageBucket: "repaid-edef4.firebasestorage.app",
+      messagingSenderId: "514373962526",
+      appId: "1:514373962526:web:244c032e8b3b3b0002570f",
+      measurementId: "G-2HL2M9MEH7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    isSupported()
+      .then((supported) => {
+        if (supported) getAnalytics(app);
+      })
+      .catch(() => {});
+
+    /* Where to send the user after a successful sign in.
+       Change this to the page you build next. */
+    const REDIRECT_URL = "dashboard.html";
+
+    const form = document.getElementById("login-form");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const signinButton = document.getElementById("signin-button");
+    const googleButton = document.getElementById("google-button");
+    const forgotButton = document.getElementById("forgot-password");
+    const toggleButton = document.getElementById("toggle-password");
+    const message = document.getElementById("form-message");
+
+    function showMessage(text) {
+      message.textContent = text;
+      message.hidden = !text;
+    }
+
+    function setBusy(busy) {
+      signinButton.disabled = busy;
+      googleButton.disabled = busy;
+    }
+
+    function friendlyError(error) {
+      switch (error && error.code) {
+        case "auth/invalid-email":
+          return "Enter a valid email address.";
+        case "auth/missing-password":
+          return "Enter your password.";
+        case "auth/invalid-credential":
+        case "auth/wrong-password":
+        case "auth/user-not-found":
+          return "Incorrect email or password.";
+        case "auth/user-disabled":
+          return "This account has been disabled.";
+        case "auth/too-many-requests":
+          return "Too many attempts. Wait a few minutes and try again.";
+        case "auth/network-request-failed":
+          return "Network error. Check your connection and try again.";
+        case "auth/popup-blocked":
+          return "Your browser blocked the Google window. Allow pop-ups and try again.";
+        case "auth/unauthorized-domain":
+          return "This domain is not authorized in Firebase. Add it under Authentication > Settings > Authorized domains.";
+        case "auth/operation-not-allowed":
+          return "This sign-in method is not enabled in Firebase yet.";
+        default:
+          return "Something went wrong. Try again.";
+      }
+    }
+
+    function goNext() {
+      window.location.href = REDIRECT_URL;
+    }
+
+    toggleButton.addEventListener("click", () => {
+      const showing = passwordInput.type === "text";
+      passwordInput.type = showing ? "password" : "text";
+      toggleButton.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+      toggleButton.querySelector(".icon-eye").hidden = !showing;
+      toggleButton.querySelector(".icon-eye-off").hidden = showing;
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      showMessage("");
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email) {
+        showMessage("Enter your email address.");
+        emailInput.focus();
+        return;
+      }
+      if (!password) {
+        showMessage("Enter your password.");
+        passwordInput.focus();
+        return;
+      }
+
+      setBusy(true);
+      signinButton.textContent = "Signing in...";
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        goNext();
+      } catch (error) {
+        showMessage(friendlyError(error));
+        setBusy(false);
+        signinButton.textContent = "Sign in";
+      }
+    });
+
+    googleButton.addEventListener("click", async () => {
+      showMessage("");
+      setBusy(true);
+
+      try {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        goNext();
+      } catch (error) {
+        if (error.code !== "auth/popup-closed-by-user" && error.code !== "auth/cancelled-popup-request") {
+          showMessage(friendlyError(error));
+        }
+        setBusy(false);
+      }
+    });
+
+    forgotButton.addEventListener("click", async () => {
+      showMessage("");
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        showMessage("Enter your email above, then tap Forgot password.");
+        emailInput.focus();
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMessage("Password reset email sent. Check your inbox.");
+      } catch (error) {
+        showMessage(friendlyError(error));
+      }
+    });
+  </script>
+</body>
+</html>
