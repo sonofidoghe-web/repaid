@@ -534,16 +534,6 @@
       }
     }
 
-    /* ---------- Reduced motion ---------- */
-
-    @media (prefers-reduced-motion: reduce) {
-      .ring,
-      .flag-inner,
-      .globe-lines,
-      .wing {
-        animation: none !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -987,7 +977,6 @@
 
     const $ = (id) => document.getElementById(id);
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     /* ---------- Page switching (#/login, #/signup, #/forgot) ---------- */
 
@@ -1048,8 +1037,6 @@
     const easeIn = (t) => t * t;
 
     function flyDove(ok) {
-      if (reduceMotion) return Promise.resolve();
-
       const vh = window.innerHeight;
       const startY = vh + 140;
       const frames = [];
@@ -1101,14 +1088,15 @@
 
     let busy = false;
 
-    async function runAction({ task, successText, onSuccess }) {
+    /* Spinner, then the dove, then (optionally) a message. Used by every button. */
+    async function runAction({ task, successText, onSuccess, silent }) {
       if (busy) return;
       busy = true;
 
       overlay.hidden = false;
       spinner.hidden = false;
 
-      const [result] = await Promise.allSettled([task(), wait(600)]);
+      const [result] = await Promise.allSettled([task(), wait(700)]);
 
       let ok = true;
       let text = successText;
@@ -1127,13 +1115,49 @@
       spinner.hidden = true;
       await flyDove(ok);
       overlay.hidden = true;
-      showToast(text, ok);
+      if (!silent) showToast(text, ok);
       busy = false;
 
       if (ok && onSuccess) setTimeout(onSuccess, 3000);
     }
 
+    /* Links to another page: spinner, dove flies up, new page is ready underneath. No message. */
+    async function goToPage(hash) {
+      if (busy) return;
+      busy = true;
+
+      overlay.hidden = false;
+      spinner.hidden = false;
+      await wait(700);
+
+      spinner.hidden = true;
+      location.hash = hash;
+      await flyDove(true);
+
+      overlay.hidden = true;
+      busy = false;
+    }
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest('a[href^="#/"]');
+      if (!link) return;
+      event.preventDefault();
+      goToPage(link.getAttribute("href"));
+    });
+
+    /* A form mistake (empty field, wrong format) also goes through spinner + dove + red message. */
+    function problem(text, input) {
+      return runAction({
+        task: () => Promise.reject({ userMessage: text }),
+        successText: "",
+        silent: false
+      }).then(() => {
+        if (input) input.focus();
+      });
+    }
+
     function friendlyError(error) {
+      if (error && error.userMessage) return error.userMessage;
       switch (error && error.code) {
         case "auth/invalid-email":
           return "Enter a valid email address.";
@@ -1168,11 +1192,6 @@
       if (REDIRECT_URL) window.location.href = REDIRECT_URL;
     }
 
-    function invalid(text, input) {
-      showToast(text, false);
-      if (input) input.focus();
-    }
-
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     /* ---------- Sign in ---------- */
@@ -1184,8 +1203,8 @@
       const email = emailInput.value.trim();
       const password = passwordInput.value;
 
-      if (!emailPattern.test(email)) return invalid("Enter a valid email address.", emailInput);
-      if (!password) return invalid("Enter your password.", passwordInput);
+      if (!emailPattern.test(email)) return problem("Enter a valid email address.", emailInput);
+      if (!password) return problem("Enter your password.", passwordInput);
 
       runAction({
         task: () => signInWithEmailAndPassword(auth, email, password),
@@ -1208,12 +1227,12 @@
       const password = passwordInput.value;
       const referral = $("signup-referral").value.trim();
 
-      if (!fullName) return invalid("Enter your full name.", nameInput);
-      if (!emailPattern.test(email)) return invalid("Enter a valid email address.", emailInput);
+      if (!fullName) return problem("Enter your full name.", nameInput);
+      if (!emailPattern.test(email)) return problem("Enter a valid email address.", emailInput);
       if (password.length < 8 || !/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
-        return invalid("Password needs at least 8 characters, with letters and numbers.", passwordInput);
+        return problem("Password needs at least 8 characters, with letters and numbers.", passwordInput);
       }
-      if (password !== confirmInput.value) return invalid("Passwords do not match.", confirmInput);
+      if (password !== confirmInput.value) return problem("Passwords do not match.", confirmInput);
 
       runAction({
         task: async () => {
@@ -1254,7 +1273,7 @@
       const emailInput = $("forgot-email");
       const email = emailInput.value.trim();
 
-      if (!emailPattern.test(email)) return invalid("Enter a valid email address.", emailInput);
+      if (!emailPattern.test(email)) return problem("Enter a valid email address.", emailInput);
 
       runAction({
         task: () => sendPasswordResetEmail(auth, email),
