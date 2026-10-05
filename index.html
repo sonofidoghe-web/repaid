@@ -2128,6 +2128,260 @@
       font-size: 12px;
       color: #9a9a9a;
     }
+
+    /* =====================================================
+       TRANSACTIONS PAGE
+       ===================================================== */
+
+    .page-title {
+      margin: 0 0 14px;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 32px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 14px 16px;
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      background: #fcfcfc;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 13.5px;
+      line-height: 18px;
+      color: #6b6b6b;
+    }
+
+    .stat b {
+      display: block;
+      margin-top: 6px;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 28px;
+    }
+
+    .stat-green {
+      color: #137333;
+    }
+
+    .stat-amber {
+      color: #b8671a;
+    }
+
+    .searchbox {
+      position: relative;
+      margin-top: 14px;
+    }
+
+    .searchbox > span {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      display: flex;
+      color: #8a8a8a;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .searchbox svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .searchbox input {
+      display: block;
+      width: 100%;
+      height: 46px;
+      padding: 0 14px 0 42px;
+      border: 1px solid #dcdcdc;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 16px;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .searchbox input:focus-visible,
+    .select:focus-visible {
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+
+    .selects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .select {
+      width: 100%;
+      height: 44px;
+      padding: 0 34px 0 14px;
+      border: 1px solid #dcdcdc;
+      border-radius: 12px;
+      background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      margin: 12px -12px 0;
+      padding: 2px 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip-tab {
+      flex: none;
+      height: 36px;
+      padding: 0 16px;
+      border: 1px solid #dcdcdc;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #333333;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .chip-tab.is-active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .txn-date {
+      margin: 22px 4px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #6b6b6b;
+    }
+
+    .txn-card {
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      background: #fcfcfc;
+      overflow: hidden;
+    }
+
+    .txn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 14px;
+    }
+
+    .txn + .txn {
+      border-top: 1px solid #ececec;
+    }
+
+    .txn-ico {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #e6edff;
+      color: var(--blue);
+      flex: none;
+    }
+
+    .txn-ico > svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .txn-badge {
+      position: absolute;
+      right: -5px;
+      bottom: -5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #fcfcfc;
+      border-radius: 50%;
+      color: #ffffff;
+    }
+
+    .txn-badge svg {
+      width: 10px;
+      height: 10px;
+      stroke-width: 3;
+    }
+
+    .txn-badge.in {
+      background: #22a05a;
+    }
+
+    .txn-badge.out {
+      background: #555555;
+    }
+
+    .txn-mid {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .txn-title {
+      overflow: hidden;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 20px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .txn-sub {
+      font-size: 13px;
+      line-height: 18px;
+      color: #6b6b6b;
+    }
+
+    .txn-end {
+      flex: none;
+      text-align: right;
+    }
+
+    .txn-amt {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 20px;
+    }
+
+    .txn-amt.in {
+      color: #137333;
+    }
+
+    .pill-failed {
+      background: #fce8e6;
+      color: #c0392b;
+    }
   </style>
 </head>
 <body>
@@ -2423,6 +2677,41 @@
       <section class="panel" style="margin-top: 0; padding-top: 4px; padding-bottom: 4px">
         <div id="funds-list"></div>
       </section>
+    </main>
+
+    <!-- ===================== TRANSACTIONS PAGE ===================== -->
+    <main class="app-inner" id="page-transactions" hidden>
+      <h1 class="page-title">Transactions</h1>
+
+      <div class="stats">
+        <div class="stat"><span>Total funded</span><b class="stat-green" id="st-funded">&mdash;</b></div>
+        <div class="stat"><span>Total spent</span><b id="st-spent">&mdash;</b></div>
+        <div class="stat"><span>Orders</span><b id="st-orders">&mdash;</b></div>
+        <div class="stat"><span>Pending</span><b class="stat-amber" id="st-pending">&mdash;</b></div>
+      </div>
+
+      <div class="searchbox">
+        <span data-icon="search"></span>
+        <input id="tx-search" type="search" placeholder="Search description or reference" autocomplete="off" />
+      </div>
+
+      <div class="selects">
+        <select class="select" id="tx-dir" aria-label="Money direction">
+          <option value="all">Money in &amp; out</option>
+          <option value="in">Money in</option>
+          <option value="out">Money out</option>
+        </select>
+        <select class="select" id="tx-range" aria-label="Time range">
+          <option value="all">All time</option>
+          <option value="today">Today</option>
+          <option value="7">Last 7 days</option>
+          <option value="30">Last 30 days</option>
+        </select>
+      </div>
+
+      <div class="chip-row" id="tx-cats"></div>
+
+      <div id="tx-groups"></div>
     </main>
 
     <button type="button" class="fab" id="fab" aria-label="Support"><span data-icon="chat"></span></button>
@@ -2788,7 +3077,7 @@
     let currentUser = null;
     let authResolved = false;
 
-    const appPages = ["dashboard", "wallet"];
+    const appPages = ["dashboard", "wallet", "transactions"];
     let currentPage = "dashboard";
 
     function route() {
@@ -2815,10 +3104,11 @@
         currentPage = name;
         $("page-dashboard").hidden = name !== "dashboard";
         $("page-wallet").hidden = name !== "wallet";
+        $("page-transactions").hidden = name !== "transactions";
         renderMenu();
       }
 
-      document.title = name === "dashboard" ? "Dashboard | repaid" : name === "wallet" ? "Wallet | repaid" : views[name].dataset.title;
+      document.title = name === "dashboard" ? "Dashboard | repaid" : name === "wallet" ? "Wallet | repaid" : name === "transactions" ? "Transactions | repaid" : views[name].dataset.title;
       window.scrollTo(0, 0);
     }
 
@@ -3190,6 +3480,9 @@
       headset: '<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 15a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2zM3 15a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"/><path d="M21 17v1a3 3 0 0 1-3 3h-4"/>',
       bank: '<path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/>',
       check: '<path d="M20 6 9 17l-5-5"/>',
+      search: '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+      "arrow-in": '<path d="M17 7L7 17M17 17H7V7"/>',
+      "arrow-out": '<path d="M7 17L17 7M7 7h10v10"/>',
       logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>'
     };
 
@@ -3231,6 +3524,9 @@
       telegramSubtitle: "Get free virtual numbers",
       telegramButton: "Join Now",
       numbersNotice: "Buy a phone number for 7 minutes. Credits are only used if you receive the SMS code.",
+      bankName: "PalmPay",
+      accountNumber: "9117412352",
+      accountName: "Ogaga blessing Idoghe",
       minDeposit: 1000,
       quickAmounts: [1000, 2000, 5000, 10000],
       depositWindowSeconds: 180
@@ -3428,7 +3724,7 @@
         '<div class="menu-label">Main</div>' +
         menuItem("Dashboard", "home", currentPage === "dashboard") +
         menuItem("Wallet", "wallet", currentPage === "wallet") +
-        menuItem("Transactions", "receipt") +
+        menuItem("Transactions", "receipt", currentPage === "transactions") +
         menuItem("Notifications", "bell") +
         menuItem("Refer & Earn", "share") +
         '<div class="menu-label">Services</div>' +
@@ -3450,6 +3746,7 @@
       renderTransactions();
       renderQuick();
       renderFunds();
+      renderTxPage();
       renderMenu();
     }
 
@@ -3505,10 +3802,10 @@
       listen(collection(db, "numberServices"), "numberServices", (snap) => {
         state.numberServices = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
       });
-      listen(query(collection(db, "users", user.uid, "transactions"), orderBy("createdAt", "desc"), limit(50)), "transactions", (snap) => {
+      listen(query(collection(db, "users", user.uid, "transactions"), orderBy("createdAt", "desc"), limit(200)), "transactions", (snap) => {
         state.transactions = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
       });
-      listen(query(collection(db, "deposits"), where("userId", "==", user.uid), limit(50)), "deposits", (snap) => {
+      listen(query(collection(db, "deposits"), where("userId", "==", user.uid), limit(200)), "deposits", (snap) => {
         const millis = (t) => (t && typeof t.toMillis === "function" ? t.toMillis() : Date.now());
         state.deposits = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => millis(b.createdAt) - millis(a.createdAt));
       });
@@ -3599,6 +3896,7 @@
       closeDrawer();
       if (label === "Dashboard") return currentPage === "dashboard" ? undefined : goToPage("#/dashboard");
       if (label === "Wallet") return currentPage === "wallet" ? undefined : goToPage("#/wallet");
+      if (label === "Transactions") return currentPage === "transactions" ? undefined : goToPage("#/transactions");
       if (label === "Support") return openChat();
       comingSoon(label + " is coming soon.");
     });
@@ -4190,6 +4488,169 @@
       hidePopup();
       clearTimeout(popupTimer);
     }
+
+    /* =====================================================
+       TRANSACTIONS PAGE
+       ===================================================== */
+
+    const txFilter = { dir: "all", range: "all", cat: "All", q: "" };
+
+    function normStatus(value) {
+      const v = String(value || "success").toLowerCase();
+      if (["success", "successful", "completed", "credited"].includes(v)) return "success";
+      if (["pending", "processing", "awaiting"].includes(v)) return "pending";
+      if (v === "expired") return "expired";
+      return "failed";
+    }
+
+    function entryDate(value) {
+      return value && typeof value.toDate === "function" ? value.toDate() : new Date();
+    }
+
+    function categoryIcon(category) {
+      const c = String(category || "").toLowerCase();
+      if (c.includes("wallet")) return "wallet";
+      if (c.includes("smm")) return "trend";
+      if (c.includes("number")) return "phone";
+      if (c.includes("social")) return "users";
+      if (c.includes("gift")) return "gift";
+      if (c.includes("airtime")) return "smartphone";
+      if (c.includes("data")) return "wifi";
+      if (c.includes("game")) return "gamepad";
+      if (c.includes("esim")) return "globe";
+      if (c.includes("telegram")) return "send";
+      return "receipt";
+    }
+
+    /* Ledger entries plus wallet deposits, as one list. */
+    function txEntries() {
+      const entries = [];
+      const depositIds = new Set((state.deposits || []).map((d) => d.id));
+
+      (state.transactions || []).forEach((t) => {
+        if (t.depositId && depositIds.has(t.depositId)) return;
+        const out = t.type === "debit";
+        entries.push({
+          id: t.id,
+          title: t.title || "Transaction",
+          category: t.category || (out ? "Order" : "Wallet"),
+          direction: out ? "out" : "in",
+          amount: Math.abs(Number(t.amount) || 0),
+          status: normStatus(t.status),
+          date: entryDate(t.createdAt),
+          reference: t.reference || t.id,
+          currency: t.currency
+        });
+      });
+
+      (state.deposits || []).forEach((d) => {
+        const status = normStatus(d.status);
+        if (status === "expired") return;
+        entries.push({
+          id: d.id,
+          title: "Wallet funded via bank transfer",
+          category: "Wallet",
+          direction: "in",
+          amount: Number(d.amount) || 0,
+          status: status,
+          date: entryDate(d.createdAt),
+          reference: d.id,
+          currency: null
+        });
+      });
+
+      return entries.sort((a, b) => b.date - a.date);
+    }
+
+    function renderTxPage() {
+      const box = $("tx-groups");
+      if (state.errors.deposits || state.errors.transactions) {
+        box.innerHTML = '<p class="empty">Could not load your transactions right now.</p>';
+        return;
+      }
+      if (state.deposits === null || state.transactions === null) {
+        box.innerHTML = '<p class="empty">Loading...</p>';
+        return;
+      }
+
+      const cur = currentCurrency();
+      const all = txEntries();
+
+      $("st-funded").textContent = money(all.filter((e) => e.direction === "in" && e.status === "success").reduce((sum, e) => sum + e.amount, 0), cur);
+      $("st-spent").textContent = money(all.filter((e) => e.direction === "out" && e.status === "success").reduce((sum, e) => sum + e.amount, 0), cur);
+      $("st-orders").textContent = String(all.filter((e) => e.direction === "out").length);
+      $("st-pending").textContent = String(all.filter((e) => e.status === "pending").length);
+
+      const cats = ["All"].concat(Array.from(new Set(all.map((e) => e.category))).sort());
+      if (!cats.includes(txFilter.cat)) txFilter.cat = "All";
+      const row = $("tx-cats");
+      const keep = row.scrollLeft;
+      row.innerHTML = cats
+        .map((c) => '<button type="button" class="chip-tab' + (c === txFilter.cat ? " is-active" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>")
+        .join("");
+      row.scrollLeft = keep;
+
+      let since = null;
+      if (txFilter.range === "today") {
+        since = new Date();
+        since.setHours(0, 0, 0, 0);
+      } else if (txFilter.range === "7" || txFilter.range === "30") {
+        since = new Date(Date.now() - Number(txFilter.range) * 86400000);
+      }
+      const q = txFilter.q.trim().toLowerCase();
+
+      const list = all.filter(
+        (e) =>
+          (txFilter.dir === "all" || e.direction === txFilter.dir) &&
+          (txFilter.cat === "All" || e.category === txFilter.cat) &&
+          (!since || e.date >= since) &&
+          (!q || (e.title + " " + e.reference + " " + e.category).toLowerCase().includes(q))
+      );
+
+      if (!list.length) {
+        box.innerHTML = '<p class="empty">' + (all.length ? "Nothing matches these filters." : "No transactions yet.") + "</p>";
+        return;
+      }
+
+      const labels = { success: "Successful", pending: "Pending", failed: "Failed" };
+      let html = "";
+      let lastDay = "";
+      list.forEach((e, index) => {
+        const day = e.date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" }).toUpperCase();
+        if (day !== lastDay) {
+          if (index > 0) html += "</div>";
+          html += '<div class="txn-date">' + esc(day) + '</div><div class="txn-card">';
+          lastDay = day;
+        }
+        const sign = e.direction === "out" ? "-" : "+";
+        html +=
+          '<div class="txn"><div class="txn-ico">' + icon(categoryIcon(e.category)) +
+          '<span class="txn-badge ' + e.direction + '">' + icon(e.direction === "out" ? "arrow-out" : "arrow-in") + "</span></div>" +
+          '<div class="txn-mid"><div class="txn-title">' + esc(e.title) + '</div><div class="txn-sub">' + esc(e.category) + " &middot; " + esc(e.date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })) + "</div></div>" +
+          '<div class="txn-end"><div class="txn-amt ' + e.direction + '">' + sign + esc(money(e.amount, e.currency || cur)) + '</div><span class="pill pill-' + e.status + '">' + labels[e.status] + "</span></div></div>";
+      });
+      html += "</div>";
+      box.innerHTML = html;
+    }
+
+    $("tx-search").addEventListener("input", (event) => {
+      txFilter.q = event.target.value;
+      renderTxPage();
+    });
+    $("tx-dir").addEventListener("change", (event) => {
+      txFilter.dir = event.target.value;
+      renderTxPage();
+    });
+    $("tx-range").addEventListener("change", (event) => {
+      txFilter.range = event.target.value;
+      renderTxPage();
+    });
+    $("tx-cats").addEventListener("click", (event) => {
+      const chip = event.target.closest("[data-cat]");
+      if (!chip) return;
+      txFilter.cat = chip.dataset.cat;
+      renderTxPage();
+    });
   </script>
 </body>
 </html>
