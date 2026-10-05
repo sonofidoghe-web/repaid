@@ -557,10 +557,754 @@
       }
     }
 
+
+    /* =====================================================
+       DASHBOARD
+       ===================================================== */
+
+    .app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: #ffffff;
+      border-bottom: 1px solid #ececec;
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 560px;
+      height: 60px;
+      margin: 0 auto;
+      padding: 0 14px;
+    }
+
+    .icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 1px solid #dcdcdc;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #000000;
+      cursor: pointer;
+      flex: none;
+    }
+
+    .icon-btn [data-icon] {
+      display: flex;
+    }
+
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-left: 6px;
+    }
+
+    .top-brand .brand-mark {
+      width: 26px;
+      height: 26px;
+      font-size: 16px;
+    }
+
+    .top-brand .name {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .balance-pill {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      height: 25px;
+      padding: 0 10px;
+      border-radius: 8px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .avatar-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #e3e3e3;
+      color: #555555;
+      cursor: pointer;
+      flex: none;
+    }
+
+    .avatar-btn:not(.has-balance) {
+      margin-left: auto;
+    }
+
+    .avatar-btn img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .avatar-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .avatar-dot {
+      position: absolute;
+      right: -1px;
+      bottom: -1px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .app-inner {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 21px 12px 96px;
+    }
+
+    /* wallet card */
+
+    .wallet {
+      position: relative;
+      height: 139px;
+      border-radius: 20px;
+      background: #050505;
+      color: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .wallet::after {
+      content: "";
+      position: absolute;
+      right: 22px;
+      top: 46px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .wallet-label {
+      position: absolute;
+      left: 26px;
+      right: 150px;
+      top: 27px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 22px;
+      color: #e8e8e8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wallet-balance {
+      position: absolute;
+      left: 26px;
+      right: 16px;
+      top: 56px;
+      z-index: 1;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 46px;
+      white-space: nowrap;
+    }
+
+    .fund-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      width: 131px;
+      height: 39px;
+      border: 0;
+      border-radius: 22px 0 0 22px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* telegram banner */
+
+    .tg-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .tg-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #000000;
+      flex: none;
+    }
+
+    .tg-icon svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .tg-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tg-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .tg-sub {
+      font-size: 12.5px;
+      line-height: 17px;
+      color: #bdbdbd;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tg-join {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: none;
+      height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .tg-join svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .tg-join [data-icon] {
+      display: flex;
+    }
+
+    /* services grid */
+
+    .section-title {
+      margin: 26px 0 12px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 26px;
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      background: #ffffff;
+      color: #000000;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .tile:hover {
+      background: #f7f7f7;
+    }
+
+    .tile-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .tile-icon,
+    .tile-arrow {
+      display: flex;
+    }
+
+    .tile-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .tile-arrow {
+      color: #8a8a8a;
+    }
+
+    .tile-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tile-title {
+      max-width: 100%;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .tile-sub {
+      max-width: 100%;
+      font-size: 12.5px;
+      line-height: 17px;
+      color: #6b6b6b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .span-2 {
+      grid-column: 1 / -1;
+    }
+
+    .empty {
+      margin: 0;
+      padding: 22px 8px;
+      text-align: center;
+      font-size: 14px;
+      color: #7a7a7a;
+    }
+
+    /* history card */
+
+    .history {
+      margin-top: 24px;
+      padding: 32px 14px 14px;
+      border: 1px solid #e3e3e3;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .tabs {
+      display: flex;
+      margin: 0 16px;
+      padding: 0;
+      border-radius: 8px;
+      background: #e9e9e9;
+      overflow: hidden;
+    }
+
+    .tab {
+      flex: 1;
+      height: 28px;
+      padding: 0 6px;
+      border: 0;
+      background: transparent;
+      color: #333333;
+      font-size: 11.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .tab.is-active {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .notice {
+      margin: 18px 0 0;
+      font-size: 15px;
+      line-height: 19px;
+      color: #333333;
+    }
+
+    .search {
+      display: block;
+      width: calc(100% - 14px);
+      height: 33px;
+      margin: 24px 7px 0;
+      padding: 0 12px 0 32px;
+      border: 1px solid #dcdcdc;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 16px;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .search::placeholder {
+      color: #777777;
+      opacity: 1;
+    }
+
+    .search:focus-visible {
+      box-shadow: 0 0 0 2px #000000;
+    }
+
+    .table-head {
+      display: grid;
+      grid-template-columns: 119px 1fr;
+      align-items: center;
+      height: 42px;
+      margin: 29px -10px 0;
+      padding: 0 15px;
+      border-radius: 10px;
+      background: #f3f3f3;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      align-items: center;
+      padding: 10px 0 10px 3px;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+    #number-list {
+      margin-top: 9px;
+    }
+
+    .row-name {
+      min-width: 0;
+      padding-right: 8px;
+      font-size: 13.5px;
+      line-height: 17px;
+      color: #444444;
+      word-break: break-word;
+    }
+
+    .check-btn {
+      width: 101px;
+      height: 29px;
+      border: 0;
+      border-radius: 6px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .tx-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 3px;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+    .tx-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    .tx-date {
+      font-size: 12.5px;
+      line-height: 17px;
+      color: #6b6b6b;
+    }
+
+    .tx-amount {
+      flex: none;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    /* support button */
+
+    .fab {
+      position: fixed;
+      right: 12px;
+      bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    .fab [data-icon] {
+      display: flex;
+    }
+
+    .fab svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* slide-out menu */
+
+    .scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .scrim.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 901;
+      display: flex;
+      flex-direction: column;
+      width: min(289px, 84vw);
+      padding-top: env(safe-area-inset-top, 0px);
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.15);
+      transform: translateX(-105%);
+      transition: transform 0.28s ease;
+      visibility: hidden;
+    }
+
+    .drawer.is-open {
+      transform: none;
+      visibility: visible;
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 16px 0 20px;
+    }
+
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drawer-brand .brand-mark {
+      width: 30px;
+      height: 30px;
+      font-size: 19px;
+    }
+
+    .drawer-brand .name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .drawer-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #444444;
+      cursor: pointer;
+    }
+
+    .drawer-close [data-icon] {
+      display: flex;
+    }
+
+    .drawer-close svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .drawer-profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 20px 12px 0;
+      padding: 11px 12px;
+      border: 1px solid #e3e3e3;
+      border-radius: 18px;
+    }
+
+    .drawer-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #ededed;
+      color: #000000;
+      font-size: 17px;
+      font-weight: 700;
+      flex: none;
+      overflow: hidden;
+    }
+
+    .drawer-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .drawer-who {
+      min-width: 0;
+    }
+
+    .drawer-name {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-email {
+      font-size: 14px;
+      line-height: 19px;
+      color: #6b6b6b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .menu-label {
+      margin: 18px 0 8px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #8a8a8a;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      height: 42px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: #2b2b2b;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .menu-item .mi {
+      display: flex;
+      flex: none;
+    }
+
+    .menu-item svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .menu-item:hover:not(.is-active) {
+      background: #f2f2f2;
+    }
+
+    .menu-item.is-active {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .drawer-foot {
+      padding: 8px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid #e6e6e6;
+    }
+
+    @media (min-width: 768px) {
+      .tiles {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
-  <main class="page">
+  <main class="page" id="auth-shell" hidden>
 
     <!-- Globe with rolling country flags (shared by every view) -->
     <div class="orbit" aria-hidden="true">
@@ -602,7 +1346,7 @@
     </div>
 
     <!-- ===================== VIEW: SIGN IN ===================== -->
-    <section id="view-login" data-title="Sign in | repaid">
+    <section id="view-login" data-title="Sign in | repaid" hidden>
       <h1 class="title">Welcome back</h1>
       <p class="subtitle">Sign in to your repaid account</p>
 
@@ -773,6 +1517,80 @@
       </svg>
     </figure>
   </main>
+
+  <!-- ===================== DASHBOARD ===================== -->
+  <div class="app" id="app-shell" hidden>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <button type="button" class="icon-btn" id="open-menu" aria-label="Open menu"><span data-icon="menu"></span></button>
+        <div class="top-brand"><span class="brand-mark">r</span><span class="name">repaid</span></div>
+        <div class="balance-pill" id="top-balance" hidden></div>
+        <button type="button" class="avatar-btn" id="avatar-btn" aria-label="Profile">
+          <span id="avatar-content"></span>
+          <span class="avatar-dot"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-inner">
+      <section class="wallet" aria-label="Wallet">
+        <div class="wallet-label" id="wallet-label">Wallet</div>
+        <div class="wallet-balance" id="wallet-balance">&mdash;</div>
+        <button type="button" class="fund-btn" id="fund-btn">Fund Wallet</button>
+      </section>
+
+      <section class="tg-banner" id="tg-banner" hidden>
+        <span class="tg-icon" data-icon="send"></span>
+        <div class="tg-text">
+          <div class="tg-title" id="tg-title"></div>
+          <div class="tg-sub" id="tg-sub"></div>
+        </div>
+        <a class="tg-join" id="tg-join" target="_blank" rel="noopener noreferrer"><span id="tg-btn"></span><span data-icon="arrow"></span></a>
+      </section>
+
+      <h2 class="section-title">Services</h2>
+      <div class="tiles" id="tiles"></div>
+
+      <section class="history" aria-label="History">
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab is-active" role="tab" data-tab="purchase">Purchase History</button>
+          <button type="button" class="tab" role="tab" data-tab="transactions">Transaction History</button>
+        </div>
+
+        <div id="panel-purchase">
+          <p class="notice" id="notice" hidden></p>
+          <input class="search" id="service-search" type="search" placeholder="Search for a service..." autocomplete="off" />
+          <div class="table-head"><span>Services</span><span>Action</span></div>
+          <div id="number-list"></div>
+        </div>
+
+        <div id="panel-transactions" hidden>
+          <div id="tx-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <button type="button" class="fab" id="fab" aria-label="Support"><span data-icon="chat"></span></button>
+
+    <div class="scrim" id="scrim"></div>
+    <aside class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-head">
+        <div class="drawer-brand"><span class="brand-mark">r</span><span class="name">repaid</span></div>
+        <button type="button" class="drawer-close" id="close-menu" aria-label="Close menu"><span data-icon="close"></span></button>
+      </div>
+      <div class="drawer-profile">
+        <div class="drawer-avatar" id="drawer-avatar"></div>
+        <div class="drawer-who">
+          <div class="drawer-name" id="drawer-name"></div>
+          <div class="drawer-email" id="drawer-email"></div>
+        </div>
+      </div>
+      <nav class="drawer-scroll" id="menu-scroll"></nav>
+      <div class="drawer-foot">
+        <button type="button" class="menu-item" id="logout-btn"><span class="mi" data-icon="logout"></span><span>Logout</span></button>
+      </div>
+    </aside>
+  </div>
 
   <!-- Loading spinner overlay -->
   <div class="overlay" id="overlay" hidden>
@@ -965,6 +1783,8 @@
     import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
     import {
       getAuth,
+      onAuthStateChanged,
+      signOut,
       signInWithEmailAndPassword,
       createUserWithEmailAndPassword,
       updateProfile,
@@ -975,7 +1795,13 @@
     import {
       getFirestore,
       doc,
+      getDoc,
       setDoc,
+      onSnapshot,
+      collection,
+      query,
+      orderBy,
+      limit,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -1001,35 +1827,49 @@
       })
       .catch(() => {});
 
-    /* Page to open after a successful sign in or sign up.
-       Leave empty to stay on this page until the next page is built. */
-    const REDIRECT_URL = "";
-
     /* ---------- Helpers ---------- */
 
     const $ = (id) => document.getElementById(id);
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    /* ---------- Page switching (#/login, #/signup, #/forgot) ---------- */
+    /* ---------- Page switching (#/login, #/signup, #/forgot, #/dashboard) ---------- */
 
+    const authShell = $("auth-shell");
+    const appShell = $("app-shell");
     const views = {
       login: $("view-login"),
       signup: $("view-signup"),
       forgot: $("view-forgot")
     };
+    const authPages = ["login", "signup", "forgot"];
+
+    let currentUser = null;
+    let authResolved = false;
 
     function route() {
-      const name = location.hash.replace(/^#\/?/, "");
-      const current = views[name] ? name : "login";
-      Object.keys(views).forEach((key) => {
-        views[key].hidden = key !== current;
+      if (!authResolved) return;
+
+      let name = location.hash.replace(/^#\/?/, "");
+      if (currentUser) {
+        name = "dashboard";
+      } else if (!authPages.includes(name)) {
+        name = "login";
+      }
+
+      const target = "#/" + name;
+      if (location.hash !== target) history.replaceState(null, "", target);
+
+      const onDashboard = name === "dashboard";
+      authShell.hidden = onDashboard;
+      appShell.hidden = !onDashboard;
+      authPages.forEach((key) => {
+        views[key].hidden = key !== name;
       });
-      document.title = views[current].dataset.title;
+      document.title = onDashboard ? "Dashboard | repaid" : views[name].dataset.title;
       window.scrollTo(0, 0);
     }
 
     window.addEventListener("hashchange", route);
-    route();
 
     /* ---------- Show / hide password ---------- */
 
@@ -1168,7 +2008,7 @@
       const [result] = await Promise.allSettled([task(), wait(700)]);
 
       let ok = true;
-      let text = successText;
+      let text = typeof successText === "function" ? "" : successText;
 
       if (result.status === "rejected") {
         const code = result.reason && result.reason.code;
@@ -1181,13 +2021,14 @@
         text = friendlyError(result.reason);
       }
 
+      if (ok && typeof successText === "function") text = successText(result.value);
+
       spinner.hidden = true;
       await flyDove(ok);
       overlay.hidden = true;
       if (!silent) showToast(text, ok);
       busy = false;
 
-      if (ok && onSuccess) setTimeout(onSuccess, 3000);
     }
 
     /* Links to another page: spinner, dove flies up, new page is ready underneath. No message. */
@@ -1257,10 +2098,6 @@
       }
     }
 
-    function goNext() {
-      if (REDIRECT_URL) window.location.href = REDIRECT_URL;
-    }
-
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     /* ---------- Sign in ---------- */
@@ -1278,7 +2115,6 @@
       runAction({
         task: () => signInWithEmailAndPassword(auth, email, password),
         successText: "Signed in successfully.",
-        onSuccess: goNext
       });
     });
 
@@ -1313,13 +2149,12 @@
               email: email,
               referralCode: referral || null,
               createdAt: serverTimestamp()
-            });
+            }, { merge: true });
           } catch (error) {
             console.warn("Account created, but the profile could not be saved to Firestore:", error);
           }
         },
         successText: "Account created successfully.",
-        onSuccess: goNext
       });
     });
 
@@ -1330,8 +2165,7 @@
         runAction({
           task: () => signInWithPopup(auth, new GoogleAuthProvider()),
           successText: "Signed in with Google.",
-          onSuccess: goNext
-        });
+          });
       });
     });
 
@@ -1347,6 +2181,454 @@
       runAction({
         task: () => sendPasswordResetEmail(auth, email),
         successText: "Reset link sent. Check your email."
+      });
+    });
+
+    /* =====================================================
+       DASHBOARD (everything below comes from Firebase)
+       ===================================================== */
+
+    const ICONS = {
+      menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+      close: '<path d="M18 6L6 18M6 6l12 12"/>',
+      arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+      chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+      person: '<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
+      home: '<path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+      wallet: '<path d="M19 7V5a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+      receipt: '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/>',
+      bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+      share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
+      gamepad: '<path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6C2.6 9.4 2 14.5 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.4-1.4A2 2 0 0 1 9.8 16h4.4a2 2 0 0 1 1.4.6L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.5-.6-6.6-.7-7.3A4 4 0 0 0 17.3 5z"/>',
+      phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+      trend: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+      users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+      "user-plus": '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/>',
+      gift: '<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
+      globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+      send: '<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/>',
+      smartphone: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>',
+      wifi: '<path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>',
+      layers: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+      settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+      profile: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.66V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.66"/>',
+      headset: '<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 15a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2zM3 15a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"/><path d="M21 17v1a3 3 0 0 1-3 3h-4"/>',
+      logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>'
+    };
+
+    function icon(name) {
+      const body = ICONS[name] || ICONS.layers;
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + body + "</svg>";
+    }
+
+    document.querySelectorAll("[data-icon]").forEach((el) => {
+      el.innerHTML = icon(el.dataset.icon);
+    });
+
+    const esc = (value) =>
+      String(value == null ? "" : value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    const state = {
+      user: null,
+      userLoaded: false,
+      settings: null,
+      services: null,
+      numberServices: null,
+      transactions: null,
+      errors: {},
+      filter: ""
+    };
+    let unsubscribers = [];
+
+    /* ---------- helpers ---------- */
+
+    function currentCurrency() {
+      return (state.user && state.user.currency) || (state.settings && state.settings.defaultCurrency) || null;
+    }
+
+    function money(amount, currency) {
+      const value = Number(amount) || 0;
+      if (currency) {
+        try {
+          return new Intl.NumberFormat(undefined, { style: "currency", currency: currency, currencyDisplay: "narrowSymbol" }).format(value);
+        } catch (error) {
+          return currency + " " + value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+      }
+      return value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatDate(value) {
+      if (value && typeof value.toDate === "function") {
+        return value.toDate().toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+      }
+      return "";
+    }
+
+    const byOrder = (a, b) => {
+      const diff = (a.order == null ? 1e9 : a.order) - (b.order == null ? 1e9 : b.order);
+      return diff !== 0 ? diff : String(a.title || a.name || "").localeCompare(String(b.title || b.name || ""));
+    };
+
+    function displayName() {
+      const u = state.user || {};
+      if (u.fullName) return u.fullName;
+      if (currentUser && currentUser.displayName) return currentUser.displayName;
+      if (currentUser && currentUser.email) return currentUser.email.split("@")[0];
+      return "";
+    }
+
+    function activeServices() {
+      return (state.services || []).filter((s) => s.active !== false).sort(byOrder);
+    }
+
+    /* ---------- render ---------- */
+
+    function renderTop() {
+      const pill = $("top-balance");
+      const avatarButton = $("avatar-btn");
+      if (state.userLoaded) {
+        const bal = typeof state.user.walletBalance === "number" ? state.user.walletBalance : 0;
+        pill.textContent = money(bal, currentCurrency());
+        pill.hidden = false;
+        avatarButton.classList.add("has-balance");
+      } else {
+        pill.hidden = true;
+        avatarButton.classList.remove("has-balance");
+      }
+      const photo = (state.user && state.user.photoURL) || (currentUser && currentUser.photoURL);
+      $("avatar-content").innerHTML = photo ? '<img alt="" src="' + esc(photo) + '" referrerpolicy="no-referrer" />' : icon("person");
+    }
+
+    function renderWallet() {
+      const cur = currentCurrency();
+      $("wallet-label").textContent = cur ? cur + " Wallet" : "Wallet";
+      const el = $("wallet-balance");
+      if (!state.userLoaded) {
+        el.textContent = "\u2014";
+        return;
+      }
+      const bal = typeof state.user.walletBalance === "number" ? state.user.walletBalance : 0;
+      const text = money(bal, cur);
+      el.textContent = text;
+      el.style.fontSize = Math.max(20, Math.min(38, Math.floor(330 / (text.length * 0.6)))) + "px";
+    }
+
+    function renderBanner() {
+      const s = state.settings;
+      const banner = $("tg-banner");
+      if (!s || !s.telegramUrl) {
+        banner.hidden = true;
+        return;
+      }
+      $("tg-title").textContent = s.telegramTitle || "";
+      $("tg-sub").textContent = s.telegramSubtitle || "";
+      $("tg-btn").textContent = s.telegramButton || "";
+      $("tg-join").href = s.telegramUrl;
+      banner.hidden = false;
+    }
+
+    function renderTiles() {
+      const box = $("tiles");
+      if (state.errors.services) {
+        box.innerHTML = '<p class="empty span-2">Could not load services right now.</p>';
+        return;
+      }
+      if (state.services === null) {
+        box.innerHTML = '<p class="empty span-2">Loading...</p>';
+        return;
+      }
+      const list = activeServices();
+      if (!list.length) {
+        box.innerHTML = '<p class="empty span-2">No services available yet.</p>';
+        return;
+      }
+      box.innerHTML = list
+        .map(
+          (s) =>
+            '<button type="button" class="tile" data-service="' + esc(s.title) + '">' +
+            '<span class="tile-top"><span class="tile-icon">' + icon(s.icon) + '</span><span class="tile-arrow">' + icon("arrow") + "</span></span>" +
+            '<span class="tile-title">' + esc(s.title) + "</span>" +
+            '<span class="tile-sub">' + esc(s.subtitle) + "</span>" +
+            "</button>"
+        )
+        .join("");
+    }
+
+    function renderNotice() {
+      const notice = $("notice");
+      const text = state.settings && state.settings.numbersNotice;
+      notice.textContent = text || "";
+      notice.hidden = !text;
+    }
+
+    function renderNumbers() {
+      const box = $("number-list");
+      if (state.errors.numberServices) {
+        box.innerHTML = '<p class="empty">Could not load services right now.</p>';
+        return;
+      }
+      if (state.numberServices === null) {
+        box.innerHTML = '<p class="empty">Loading...</p>';
+        return;
+      }
+      const q = state.filter.trim().toLowerCase();
+      const all = state.numberServices.filter((s) => s.active !== false);
+      const list = all.filter((s) => String(s.name || "").toLowerCase().includes(q)).sort(byOrder);
+      if (!list.length) {
+        box.innerHTML = '<p class="empty">' + (all.length ? "No services match your search." : "No services available yet.") + "</p>";
+        return;
+      }
+      box.innerHTML = list
+        .map(
+          (s) =>
+            '<div class="row"><span class="row-name">' + esc(s.name) + '</span><span><button type="button" class="check-btn" data-price="' + esc(s.id) + '">Check Price</button></span></div>'
+        )
+        .join("");
+    }
+
+    function renderTransactions() {
+      const box = $("tx-list");
+      if (state.errors.transactions) {
+        box.innerHTML = '<p class="empty">Could not load transactions right now.</p>';
+        return;
+      }
+      if (state.transactions === null) {
+        box.innerHTML = '<p class="empty">Loading...</p>';
+        return;
+      }
+      if (!state.transactions.length) {
+        box.innerHTML = '<p class="empty">No transactions yet.</p>';
+        return;
+      }
+      const cur = currentCurrency();
+      box.innerHTML = state.transactions
+        .map((t) => {
+          const sign = t.type === "debit" ? "-" : "+";
+          return (
+            '<div class="tx-row"><div><div class="tx-title">' + esc(t.title) + '</div><div class="tx-date">' + esc(formatDate(t.createdAt)) + "</div></div>" +
+            '<div class="tx-amount">' + sign + esc(money(Math.abs(Number(t.amount) || 0), t.currency || cur)) + "</div></div>"
+          );
+        })
+        .join("");
+    }
+
+    function menuItem(label, iconName, active) {
+      return (
+        '<button type="button" class="menu-item' + (active ? " is-active" : "") + '" data-menu="' + esc(label) + '">' +
+        '<span class="mi">' + icon(iconName) + "</span><span>" + esc(label) + "</span></button>"
+      );
+    }
+
+    function renderMenu() {
+      const name = displayName();
+      const photo = (state.user && state.user.photoURL) || (currentUser && currentUser.photoURL);
+      $("drawer-avatar").innerHTML = photo ? '<img alt="" src="' + esc(photo) + '" referrerpolicy="no-referrer" />' : esc((name.charAt(0) || "?").toUpperCase());
+      $("drawer-name").textContent = name;
+      $("drawer-email").textContent = (currentUser && currentUser.email) || "";
+
+      $("menu-scroll").innerHTML =
+        '<div class="menu-label">Main</div>' +
+        menuItem("Dashboard", "home", true) +
+        menuItem("Wallet", "wallet") +
+        menuItem("Transactions", "receipt") +
+        menuItem("Notifications", "bell") +
+        menuItem("Refer & Earn", "share") +
+        '<div class="menu-label">Services</div>' +
+        activeServices().map((s) => menuItem(s.title, s.icon)).join("") +
+        menuItem("All Services", "layers") +
+        '<div class="menu-label">Settings</div>' +
+        menuItem("Settings", "settings") +
+        menuItem("Profile", "profile") +
+        menuItem("Support", "headset");
+    }
+
+    function renderAll() {
+      renderTop();
+      renderWallet();
+      renderBanner();
+      renderTiles();
+      renderNotice();
+      renderNumbers();
+      renderTransactions();
+      renderMenu();
+    }
+
+    /* ---------- Firebase listeners ---------- */
+
+    function listen(ref, key, onData) {
+      unsubscribers.push(
+        onSnapshot(
+          ref,
+          (snap) => {
+            state.errors[key] = false;
+            onData(snap);
+            renderAll();
+          },
+          (error) => {
+            console.error("Could not load " + key + ":", error);
+            state.errors[key] = true;
+            renderAll();
+          }
+        )
+      );
+    }
+
+    async function ensureProfile(user) {
+      try {
+        const ref = doc(db, "users", user.uid);
+        const snap = await getDoc(ref);
+        if (!snap.exists()) {
+          await setDoc(ref, {
+            fullName: user.displayName || null,
+            email: user.email || null,
+            createdAt: serverTimestamp()
+          });
+        }
+      } catch (error) {
+        console.warn("Could not create the profile record:", error);
+      }
+    }
+
+    function startDashboard(user) {
+      stopDashboard();
+      renderAll();
+      listen(doc(db, "users", user.uid), "user", (snap) => {
+        state.user = snap.exists() ? snap.data() : {};
+        state.userLoaded = true;
+      });
+      listen(doc(db, "settings", "app"), "settings", (snap) => {
+        state.settings = snap.exists() ? snap.data() : {};
+      });
+      listen(collection(db, "services"), "services", (snap) => {
+        state.services = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
+      listen(collection(db, "numberServices"), "numberServices", (snap) => {
+        state.numberServices = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
+      listen(query(collection(db, "users", user.uid, "transactions"), orderBy("createdAt", "desc"), limit(50)), "transactions", (snap) => {
+        state.transactions = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
+      ensureProfile(user);
+    }
+
+    function stopDashboard() {
+      unsubscribers.forEach((unsubscribe) => unsubscribe());
+      unsubscribers = [];
+      state.user = null;
+      state.userLoaded = false;
+      state.settings = null;
+      state.services = null;
+      state.numberServices = null;
+      state.transactions = null;
+      state.errors = {};
+      state.filter = "";
+      $("service-search").value = "";
+      closeDrawer();
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      currentUser = user;
+      authResolved = true;
+      if (user) {
+        startDashboard(user);
+      } else {
+        stopDashboard();
+      }
+      route();
+    });
+
+    /* ---------- slide-out menu ---------- */
+
+    const drawer = $("drawer");
+    const scrim = $("scrim");
+
+    function openDrawer() {
+      drawer.classList.add("is-open");
+      scrim.classList.add("is-open");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove("is-open");
+      scrim.classList.remove("is-open");
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    $("open-menu").addEventListener("click", openDrawer);
+    $("close-menu").addEventListener("click", closeDrawer);
+    scrim.addEventListener("click", closeDrawer);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeDrawer();
+    });
+
+    /* ---------- actions ---------- */
+
+    function comingSoon(text) {
+      runAction({ task: () => Promise.resolve(), successText: text });
+    }
+
+    function openSupport() {
+      const url = state.settings && state.settings.supportUrl;
+      if (url) {
+        window.open(url, "_blank", "noopener");
+        return;
+      }
+      runAction({ task: () => Promise.reject({ userMessage: "The support link has not been set up yet." }), successText: "" });
+    }
+
+    $("menu-scroll").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-menu]");
+      if (!button) return;
+      const label = button.dataset.menu;
+      closeDrawer();
+      if (label === "Dashboard") return;
+      if (label === "Support") return openSupport();
+      comingSoon(label + " is coming soon.");
+    });
+
+    $("logout-btn").addEventListener("click", () => {
+      closeDrawer();
+      runAction({ task: () => signOut(auth), successText: "Logged out." });
+    });
+
+    $("tiles").addEventListener("click", (event) => {
+      const tile = event.target.closest("[data-service]");
+      if (tile) comingSoon(tile.dataset.service + " is coming soon.");
+    });
+
+    $("fund-btn").addEventListener("click", () => comingSoon("Wallet funding is coming soon."));
+    $("avatar-btn").addEventListener("click", () => comingSoon("Profile is coming soon."));
+    $("fab").addEventListener("click", openSupport);
+
+    $("number-list").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-price]");
+      if (!button) return;
+      const id = button.dataset.price;
+      runAction({
+        task: async () => {
+          const snap = await getDoc(doc(db, "numberServices", id));
+          if (!snap.exists()) throw { userMessage: "This service is no longer available." };
+          const data = snap.data();
+          if (typeof data.price !== "number") throw { userMessage: "No price has been set for this service yet." };
+          return { name: data.name || "", price: money(data.price, data.currency || currentCurrency()) };
+        },
+        successText: (result) => result.name + ": " + result.price
+      });
+    });
+
+    $("service-search").addEventListener("input", (event) => {
+      state.filter = event.target.value;
+      renderNumbers();
+    });
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((other) => other.classList.toggle("is-active", other === tab));
+        $("panel-purchase").hidden = tab.dataset.tab !== "purchase";
+        $("panel-transactions").hidden = tab.dataset.tab !== "transactions";
       });
     });
   </script>
