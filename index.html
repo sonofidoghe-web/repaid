@@ -1301,6 +1301,81 @@
         grid-template-columns: repeat(3, 1fr);
       }
     }
+
+    /* ---- dashboard colours (taken from the reference screenshot) ---- */
+    .app {
+      --blue: #2a62f0;
+      background: #f3f3f3;
+    }
+
+    .balance-pill {
+      background: var(--blue);
+    }
+
+    .fund-btn {
+      border: 2px solid #ffffff;
+      border-right: 0;
+      border-top: 0;
+      background: linear-gradient(90deg, #2a62f0 0%, #2a62f0 78%, #e0912f 100%);
+      color: #ffffff;
+    }
+
+    .tg-banner {
+      background: linear-gradient(100deg, #2a62f0, #4a84ff);
+    }
+
+    .tg-icon,
+    .tg-join {
+      color: var(--blue);
+    }
+
+    .tg-sub {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .tile-icon {
+      color: var(--blue);
+    }
+
+    .history {
+      background: #fcfcfc;
+    }
+
+    .tabs {
+      background: #1a1d21;
+    }
+
+    .tab {
+      color: #d6dae1;
+    }
+
+    .tab.is-active {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .search:focus-visible {
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+
+    .check-btn {
+      background: var(--blue);
+    }
+
+    .fab {
+      background: var(--blue);
+      box-shadow: 0 8px 22px rgba(42, 98, 240, 0.45);
+    }
+
+    .menu-item.is-active {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .drawer-avatar {
+      background: #e6edff;
+      color: var(--blue);
+    }
   </style>
 </head>
 <body>
@@ -2228,6 +2303,34 @@
     const esc = (value) =>
       String(value == null ? "" : value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+    /* Shown until you add your own records in Firebase. Anything saved in the
+       "services", "numberServices" and "settings/app" documents replaces these. */
+    const DEFAULT_SERVICES = [
+      { title: "Games Top-up", subtitle: "Top up your games", icon: "gamepad", order: 1 },
+      { title: "Virtual Numbers", subtitle: "Get a number for OTP", icon: "phone", order: 2 },
+      { title: "SMM Services", subtitle: "Followers, likes & views", icon: "trend", order: 3 },
+      { title: "Social Accounts", subtitle: "FB, IG, TikTok & more", icon: "users", order: 4 },
+      { title: "Social Accounts 2", subtitle: "More accounts & logs", icon: "user-plus", order: 5 },
+      { title: "Gift Cards", subtitle: "Apple, Google Play & more", icon: "gift", order: 6 },
+      { title: "Travel eSIM", subtitle: "Stay online abroad", icon: "globe", order: 7 },
+      { title: "Telegram", subtitle: "Premium & Stars", icon: "send", order: 8 },
+      { title: "Airtime", subtitle: "Recharge any network", icon: "smartphone", order: 9 },
+      { title: "Data", subtitle: "Cheap data bundles", icon: "wifi", order: 10 }
+    ];
+
+    const DEFAULT_NUMBERS = [
+      { id: "", name: "us - 1688", order: 1 },
+      { id: "", name: "us - 1Q", order: 2 },
+      { id: "", name: "us - 1StopMove", order: 3 }
+    ];
+
+    const DEFAULT_SETTINGS = {
+      telegramTitle: "Join Our Telegram",
+      telegramSubtitle: "Get free virtual numbers",
+      telegramButton: "Join Now",
+      numbersNotice: "Buy a phone number for 7 minutes. Credits are only used if you receive the SMS code."
+    };
+
     const state = {
       user: null,
       userLoaded: false,
@@ -2279,7 +2382,8 @@
     }
 
     function activeServices() {
-      return (state.services || []).filter((s) => s.active !== false).sort(byOrder);
+      const source = state.services && state.services.length ? state.services : DEFAULT_SERVICES;
+      return source.filter((s) => s.active !== false).sort(byOrder);
     }
 
     /* ---------- render ---------- */
@@ -2314,36 +2418,26 @@
       el.style.fontSize = Math.max(20, Math.min(38, Math.floor(330 / (text.length * 0.6)))) + "px";
     }
 
+    function settingsNow() {
+      return Object.assign({}, DEFAULT_SETTINGS, state.settings || {});
+    }
+
     function renderBanner() {
-      const s = state.settings;
-      const banner = $("tg-banner");
-      if (!s || !s.telegramUrl) {
-        banner.hidden = true;
-        return;
+      const cfg = settingsNow();
+      $("tg-title").textContent = cfg.telegramTitle;
+      $("tg-sub").textContent = cfg.telegramSubtitle;
+      $("tg-btn").textContent = cfg.telegramButton;
+      if (cfg.telegramUrl) {
+        $("tg-join").href = cfg.telegramUrl;
+      } else {
+        $("tg-join").removeAttribute("href");
       }
-      $("tg-title").textContent = s.telegramTitle || "";
-      $("tg-sub").textContent = s.telegramSubtitle || "";
-      $("tg-btn").textContent = s.telegramButton || "";
-      $("tg-join").href = s.telegramUrl;
-      banner.hidden = false;
+      $("tg-banner").hidden = false;
     }
 
     function renderTiles() {
-      const box = $("tiles");
-      if (state.errors.services) {
-        box.innerHTML = '<p class="empty span-2">Could not load services right now.</p>';
-        return;
-      }
-      if (state.services === null) {
-        box.innerHTML = '<p class="empty span-2">Loading...</p>';
-        return;
-      }
       const list = activeServices();
-      if (!list.length) {
-        box.innerHTML = '<p class="empty span-2">No services available yet.</p>';
-        return;
-      }
-      box.innerHTML = list
+      $("tiles").innerHTML = list
         .map(
           (s) =>
             '<button type="button" class="tile" data-service="' + esc(s.title) + '">' +
@@ -2357,26 +2451,19 @@
 
     function renderNotice() {
       const notice = $("notice");
-      const text = state.settings && state.settings.numbersNotice;
+      const text = settingsNow().numbersNotice;
       notice.textContent = text || "";
       notice.hidden = !text;
     }
 
     function renderNumbers() {
       const box = $("number-list");
-      if (state.errors.numberServices) {
-        box.innerHTML = '<p class="empty">Could not load services right now.</p>';
-        return;
-      }
-      if (state.numberServices === null) {
-        box.innerHTML = '<p class="empty">Loading...</p>';
-        return;
-      }
+      const source = state.numberServices && state.numberServices.length ? state.numberServices : DEFAULT_NUMBERS;
       const q = state.filter.trim().toLowerCase();
-      const all = state.numberServices.filter((s) => s.active !== false);
+      const all = source.filter((s) => s.active !== false);
       const list = all.filter((s) => String(s.name || "").toLowerCase().includes(q)).sort(byOrder);
       if (!list.length) {
-        box.innerHTML = '<p class="empty">' + (all.length ? "No services match your search." : "No services available yet.") + "</p>";
+        box.innerHTML = '<p class="empty">No services match your search.</p>';
         return;
       }
       box.innerHTML = list
@@ -2599,6 +2686,12 @@
       if (tile) comingSoon(tile.dataset.service + " is coming soon.");
     });
 
+    $("tg-join").addEventListener("click", (event) => {
+      if (settingsNow().telegramUrl) return;
+      event.preventDefault();
+      runAction({ task: () => Promise.reject({ userMessage: "The Telegram link has not been set up yet." }), successText: "" });
+    });
+
     $("fund-btn").addEventListener("click", () => comingSoon("Wallet funding is coming soon."));
     $("avatar-btn").addEventListener("click", () => comingSoon("Profile is coming soon."));
     $("fab").addEventListener("click", openSupport);
@@ -2607,6 +2700,10 @@
       const button = event.target.closest("[data-price]");
       if (!button) return;
       const id = button.dataset.price;
+      if (!id) {
+        runAction({ task: () => Promise.reject({ userMessage: "No price has been set for this service yet." }), successText: "" });
+        return;
+      }
       runAction({
         task: async () => {
           const snap = await getDoc(doc(db, "numberServices", id));
