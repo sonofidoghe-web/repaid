@@ -2382,6 +2382,413 @@
       background: #fce8e6;
       color: #c0392b;
     }
+
+    /* =====================================================
+       NOTIFICATIONS AND REFER & EARN
+       ===================================================== */
+
+    #notif-tabs {
+      margin: 0;
+    }
+
+    .notif-card {
+      margin-top: 14px;
+      border: 1px solid #e3e3e3;
+      border-radius: 16px;
+      background: #fcfcfc;
+      overflow: hidden;
+    }
+
+    .notif {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .notif + .notif {
+      border-top: 1px solid #ececec;
+    }
+
+    .notif-ico {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #e6edff;
+      color: var(--blue);
+      flex: none;
+    }
+
+    .notif-ico.account {
+      background: #e6f4ea;
+      color: #137333;
+    }
+
+    .notif-ico svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .notif-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notif-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      line-height: 21px;
+    }
+
+    .notif-body {
+      margin-top: 2px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #555555;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .notif-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 13px;
+      color: #6b6b6b;
+    }
+
+    .notif-tag {
+      padding: 1px 9px;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      background: #f3f3f3;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #444444;
+    }
+
+    .ref-card {
+      position: relative;
+      padding: 22px 20px 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #2a62f0, #4a84ff);
+      color: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(42, 98, 240, 0.3);
+    }
+
+    .ref-gift {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      display: flex;
+      color: rgba(255, 255, 255, 0.18);
+    }
+
+    .ref-gift svg {
+      width: 92px;
+      height: 92px;
+      stroke-width: 1.2;
+    }
+
+    .ref-label {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .ref-amount {
+      margin-top: 4px;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 46px;
+    }
+
+    .ref-life {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .ref-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .ref-bar {
+      height: 8px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+
+    .ref-bar i {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: #ffffff;
+      transition: width 0.4s ease;
+    }
+
+    .ref-note {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 20px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .ref-lock {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 46px;
+      margin-top: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.22);
+      font-size: 15.5px;
+      font-weight: 700;
+    }
+
+    .ref-lock.is-open {
+      background: #ffffff;
+      color: var(--blue);
+    }
+
+    .ref-lock svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .ref-h {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ref-h span {
+      display: flex;
+      color: var(--blue);
+    }
+
+    .ref-h svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .copybox {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 52px;
+      padding: 8px 10px 8px 16px;
+      border: 1px solid #dcdcdc;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .copybox .code {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--blue);
+    }
+
+    .copybox .link {
+      min-width: 0;
+      overflow: hidden;
+      font-size: 14.5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .copybox .copy-btn {
+      flex: none;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      background: #ffffff;
+    }
+
+    .step-ico {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #e6edff;
+      color: var(--blue);
+      flex: none;
+    }
+
+    .step-ico svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .step-ico em {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .step b {
+      display: block;
+      font-size: 15.5px;
+      line-height: 21px;
+    }
+
+    .step p {
+      margin: 2px 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: #555555;
+    }
+
+    .ref-head {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ref-head h2 {
+      margin-right: auto;
+    }
+
+    .mini-pill {
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #f0f0f0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mini-pill.green {
+      background: #e6f4ea;
+      color: #137333;
+    }
+
+    .ref-empty {
+      padding: 26px 8px 14px;
+      text-align: center;
+    }
+
+    .ref-empty .ico {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: #e6edff;
+      color: var(--blue);
+    }
+
+    .ref-empty .ico svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .ref-empty b {
+      display: block;
+      margin-top: 12px;
+      font-size: 18px;
+    }
+
+    .ref-empty p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: #555555;
+    }
+
+    .ref-person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 2px;
+    }
+
+    .ref-person + .ref-person {
+      border-top: 1px solid #ececec;
+    }
+
+    .ref-person .av {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #e6edff;
+      color: var(--blue);
+      font-weight: 800;
+      flex: none;
+    }
+
+    .ref-person .who {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ref-person .who b {
+      display: block;
+      overflow: hidden;
+      font-size: 15px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .ref-person .who small {
+      font-size: 12.5px;
+      color: #6b6b6b;
+    }
+
+    .ref-person .gain {
+      font-size: 15px;
+      font-weight: 800;
+      color: #137333;
+    }
+
+    .premium-pill {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 8px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
@@ -2714,6 +3121,57 @@
       <div id="tx-groups"></div>
     </main>
 
+    <!-- ===================== NOTIFICATIONS PAGE ===================== -->
+    <main class="app-inner" id="page-notifications" hidden>
+      <h1 class="page-title">Notifications</h1>
+      <div class="tabs" id="notif-tabs" role="tablist">
+        <button type="button" class="tab is-active" role="tab" data-notif="all">All</button>
+        <button type="button" class="tab" role="tab" data-notif="account">My account</button>
+        <button type="button" class="tab" role="tab" data-notif="announcement">Announcements</button>
+      </div>
+      <div class="notif-card" id="notif-list"></div>
+    </main>
+
+    <!-- ===================== REFER & EARN PAGE ===================== -->
+    <main class="app-inner" id="page-refer" hidden>
+      <h1 class="page-title">Refer &amp; Earn</h1>
+
+      <section class="ref-card">
+        <div class="ref-gift" data-icon="gift"></div>
+        <div class="ref-label">Referral wallet</div>
+        <div class="ref-amount" id="ref-balance">&mdash;</div>
+        <div class="ref-life" id="ref-life"></div>
+        <div class="ref-row"><span id="ref-togo"></span><span id="ref-prog"></span></div>
+        <div class="ref-bar"><i id="ref-bar-fill" style="width: 0%"></i></div>
+        <div class="ref-note" id="ref-note"></div>
+        <div class="ref-lock" id="ref-lock"></div>
+      </section>
+
+      <section class="panel">
+        <h2 class="ref-h"><span data-icon="share"></span>Invite friends</h2>
+        <p class="sub">Share your code or link. Friends enter it when they sign up.</p>
+        <div class="field-label">Your referral code</div>
+        <div class="copybox"><span class="code" id="ref-code"></span><button type="button" class="copy-btn" data-ref-copy="code">Copy</button></div>
+        <div class="field-label">Your invite link</div>
+        <div class="copybox"><span class="link" id="ref-link"></span><button type="button" class="copy-btn" data-ref-copy="link">Copy</button></div>
+        <button type="button" class="primary-btn" id="ref-share">Share invite link</button>
+      </section>
+
+      <section class="panel">
+        <h2>How it works</h2>
+        <div id="ref-steps"></div>
+      </section>
+
+      <section class="panel">
+        <div class="ref-head">
+          <h2>Your referrals</h2>
+          <span class="mini-pill" id="ref-invited"></span>
+          <span class="mini-pill green" id="ref-earned"></span>
+        </div>
+        <div id="ref-list"></div>
+      </section>
+    </main>
+
     <button type="button" class="fab" id="fab" aria-label="Support"><span data-icon="chat"></span></button>
 
     <!-- Payment flow: how would you like to pay -->
@@ -3033,6 +3491,8 @@
       Timestamp,
       updateDoc,
       deleteDoc,
+      writeBatch,
+      increment,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -3077,20 +3537,26 @@
     let currentUser = null;
     let authResolved = false;
 
-    const appPages = ["dashboard", "wallet", "transactions"];
+    const appPages = ["dashboard", "wallet", "transactions", "notifications", "refer"];
+    const pageTitles = { dashboard: "Dashboard", wallet: "Wallet", transactions: "Transactions", notifications: "Notifications", refer: "Refer & Earn" };
     let currentPage = "dashboard";
+    let signupInProgress = false;
 
     function route() {
       if (!authResolved) return;
 
-      let name = location.hash.replace(/^#\/?/, "");
+      const raw = location.hash.replace(/^#\/?/, "");
+      let name = raw.split("?")[0];
+      const query = new URLSearchParams(raw.split("?")[1] || "");
+      const refParam = (query.get("ref") || "").trim();
+
       if (currentUser) {
         if (!appPages.includes(name)) name = "dashboard";
       } else if (!authPages.includes(name)) {
         name = "login";
       }
 
-      const target = "#/" + name;
+      const target = "#/" + name + (name === "signup" && refParam ? "?ref=" + encodeURIComponent(refParam) : "");
       if (location.hash !== target) history.replaceState(null, "", target);
 
       const inApp = appPages.includes(name);
@@ -3100,19 +3566,23 @@
         views[key].hidden = key !== name;
       });
 
+      if (name === "signup" && refParam && !$("signup-referral").value) {
+        $("signup-referral").value = refParam.toUpperCase();
+      }
+
       if (inApp) {
         currentPage = name;
-        $("page-dashboard").hidden = name !== "dashboard";
-        $("page-wallet").hidden = name !== "wallet";
-        $("page-transactions").hidden = name !== "transactions";
+        appPages.forEach((page) => {
+          $("page-" + page).hidden = page !== name;
+        });
         renderMenu();
       }
 
-      document.title = name === "dashboard" ? "Dashboard | repaid" : name === "wallet" ? "Wallet | repaid" : name === "transactions" ? "Transactions | repaid" : views[name].dataset.title;
+      document.title = inApp ? pageTitles[name] + " | repaid" : views[name].dataset.title;
       window.scrollTo(0, 0);
     }
 
-    window.addEventListener("hashchange", route);
+        window.addEventListener("hashchange", route);
 
     /* ---------- Show / hide password ---------- */
 
@@ -3406,20 +3876,43 @@
 
       runAction({
         task: async () => {
-          const credential = await createUserWithEmailAndPassword(auth, email, password);
-          await updateProfile(credential.user, { displayName: fullName });
+          signupInProgress = true;
           try {
-            await setDoc(doc(db, "users", credential.user.uid), {
-              fullName: fullName,
-              email: email,
-              referralCode: referral || null,
-              createdAt: serverTimestamp()
-            }, { merge: true });
-          } catch (error) {
-            console.warn("Account created, but the profile could not be saved to Firestore:", error);
+            const credential = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(credential.user, { displayName: fullName });
+            const uid = credential.user.uid;
+            const code = referral.toUpperCase();
+
+            let referrerUid = null;
+            if (code) {
+              try {
+                const found = await getDoc(doc(db, "referralCodes", code));
+                if (found.exists() && found.data().uid !== uid) referrerUid = found.data().uid;
+              } catch (error) {
+                console.warn("Could not check the referral code:", error);
+              }
+            }
+
+            const profile = { fullName: fullName, email: email, createdAt: serverTimestamp() };
+            if (referrerUid) {
+              profile.referredBy = referrerUid;
+              profile.referredByCode = code;
+            }
+            try {
+              await setDoc(doc(db, "users", uid), profile, { merge: true });
+              if (referrerUid) {
+                await setDoc(doc(db, "users", referrerUid, "referrals", uid), { fullName: fullName, joinedAt: serverTimestamp() });
+              }
+            } catch (error) {
+              console.warn("Account created, but the profile could not be saved to Firestore:", error);
+            }
+            return { referralIgnored: Boolean(code) && !referrerUid };
+          } finally {
+            signupInProgress = false;
+            maybeCreateReferralCode();
           }
         },
-        successText: "Account created successfully.",
+        successText: (result) => (result && result.referralIgnored ? "Account created. The referral code was not recognised." : "Account created successfully."),
       });
     });
 
@@ -3483,6 +3976,9 @@
       search: '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
       "arrow-in": '<path d="M17 7L7 17M17 17H7V7"/>',
       "arrow-out": '<path d="M7 17L17 7M7 7h10v10"/>',
+      megaphone: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 6a9 9 0 0 1 0 12"/>',
+      lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+      inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/>',
       logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>'
     };
 
@@ -3529,7 +4025,10 @@
       accountName: "Ogaga blessing Idoghe",
       minDeposit: 1000,
       quickAmounts: [1000, 2000, 5000, 10000],
-      depositWindowSeconds: 180
+      depositWindowSeconds: 180,
+      referralPercent: 1,
+      premiumUnlockAmount: 5000,
+      premiumDiscountPercent: 15
     };
 
     const state = {
@@ -3541,6 +4040,9 @@
       transactions: null,
       deposits: null,
       faqs: null,
+      announcements: null,
+      notifications: null,
+      referrals: null,
       errors: {},
       filter: ""
     };
@@ -3717,7 +4219,7 @@
       const name = displayName();
       const photo = (state.user && state.user.photoURL) || (currentUser && currentUser.photoURL);
       $("drawer-avatar").innerHTML = photo ? '<img alt="" src="' + esc(photo) + '" referrerpolicy="no-referrer" />' : esc((name.charAt(0) || "?").toUpperCase());
-      $("drawer-name").textContent = name;
+      $("drawer-name").innerHTML = esc(name) + (state.user && state.user.premium === true ? '<span class="premium-pill">Premium</span>' : "");
       $("drawer-email").textContent = (currentUser && currentUser.email) || "";
 
       $("menu-scroll").innerHTML =
@@ -3725,8 +4227,8 @@
         menuItem("Dashboard", "home", currentPage === "dashboard") +
         menuItem("Wallet", "wallet", currentPage === "wallet") +
         menuItem("Transactions", "receipt", currentPage === "transactions") +
-        menuItem("Notifications", "bell") +
-        menuItem("Refer & Earn", "share") +
+        menuItem("Notifications", "bell", currentPage === "notifications") +
+        menuItem("Refer & Earn", "share", currentPage === "refer") +
         '<div class="menu-label">Services</div>' +
         activeServices().map((s) => menuItem(s.title, s.icon)).join("") +
         menuItem("All Services", "layers") +
@@ -3747,6 +4249,8 @@
       renderQuick();
       renderFunds();
       renderTxPage();
+      renderNotifs();
+      renderRefer();
       renderMenu();
     }
 
@@ -3771,15 +4275,20 @@
     }
 
     async function ensureProfile(user) {
+      if (signupInProgress) return;
       try {
         const ref = doc(db, "users", user.uid);
         const snap = await getDoc(ref);
-        if (!snap.exists()) {
-          await setDoc(ref, {
-            fullName: user.displayName || null,
-            email: user.email || null,
-            createdAt: serverTimestamp()
-          });
+        if (!snap.exists() && !signupInProgress) {
+          await setDoc(
+            ref,
+            {
+              fullName: user.displayName || null,
+              email: user.email || null,
+              createdAt: serverTimestamp()
+            },
+            { merge: true }
+          );
         }
       } catch (error) {
         console.warn("Could not create the profile record:", error);
@@ -3792,6 +4301,8 @@
       listen(doc(db, "users", user.uid), "user", (snap) => {
         state.user = snap.exists() ? snap.data() : {};
         state.userLoaded = true;
+        maybeCreateReferralCode();
+        maybeUnlockPremium();
       });
       listen(doc(db, "settings", "app"), "settings", (snap) => {
         state.settings = snap.exists() ? snap.data() : {};
@@ -3805,12 +4316,22 @@
       listen(query(collection(db, "users", user.uid, "transactions"), orderBy("createdAt", "desc"), limit(200)), "transactions", (snap) => {
         state.transactions = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
       });
-      listen(query(collection(db, "deposits"), where("userId", "==", user.uid), limit(200)), "deposits", (snap) => {
+      listen(query(collection(db, "transactions"), where("userId", "==", user.uid), limit(200)), "deposits", (snap) => {
         const millis = (t) => (t && typeof t.toMillis === "function" ? t.toMillis() : Date.now());
         state.deposits = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => millis(b.createdAt) - millis(a.createdAt));
+        claimPending();
       });
       listen(collection(db, "faqs"), "faqs", (snap) => {
         state.faqs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
+      listen(collection(db, "announcements"), "announcements", (snap) => {
+        state.announcements = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
+      listen(query(collection(db, "users", user.uid, "notifications"), orderBy("createdAt", "desc"), limit(100)), "notifications", (snap) => {
+        state.notifications = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
+      listen(collection(db, "users", user.uid, "referrals"), "referrals", (snap) => {
+        state.referrals = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
       });
       ensureProfile(user);
     }
@@ -3827,6 +4348,9 @@
       state.transactions = null;
       state.deposits = null;
       state.faqs = null;
+      state.announcements = null;
+      state.notifications = null;
+      state.referrals = null;
       state.errors = {};
       state.filter = "";
       $("service-search").value = "";
@@ -3894,9 +4418,8 @@
       if (!button) return;
       const label = button.dataset.menu;
       closeDrawer();
-      if (label === "Dashboard") return currentPage === "dashboard" ? undefined : goToPage("#/dashboard");
-      if (label === "Wallet") return currentPage === "wallet" ? undefined : goToPage("#/wallet");
-      if (label === "Transactions") return currentPage === "transactions" ? undefined : goToPage("#/transactions");
+      const pageMap = { Dashboard: "dashboard", Wallet: "wallet", Transactions: "transactions", Notifications: "notifications", "Refer & Earn": "refer" };
+      if (pageMap[label]) return currentPage === pageMap[label] ? undefined : goToPage("#/" + pageMap[label]);
       if (label === "Support") return openChat();
       comingSoon(label + " is coming soon.");
     });
@@ -3935,9 +4458,11 @@
           if (!snap.exists()) throw { userMessage: "This service is no longer available." };
           const data = snap.data();
           if (typeof data.price !== "number") throw { userMessage: "No price has been set for this service yet." };
-          return { name: data.name || "", price: money(data.price, data.currency || currentCurrency()) };
+          const cur = data.currency || currentCurrency();
+          const off = state.user && state.user.premium === true ? discountPercent() : 0;
+          return { name: data.name || "", price: money(data.price * (1 - off / 100), cur), full: money(data.price, cur), off: off };
         },
-        successText: (result) => result.name + ": " + result.price
+        successText: (result) => (result.off ? result.name + ": " + result.price + " (" + result.off + "% premium discount, normally " + result.full + ")" : result.name + ": " + result.price)
       });
     });
 
@@ -4056,7 +4581,7 @@
       hideFlows();
       if (expire && id) {
         try {
-          await updateDoc(doc(db, "deposits", id), { status: "expired", expiredAt: serverTimestamp() });
+          await updateDoc(doc(db, "transactions", id), { status: "expired", expiredAt: serverTimestamp() });
         } catch (error) {
           console.warn("Could not mark the deposit as expired:", error);
         }
@@ -4094,8 +4619,13 @@
       if (!reserved) throw { userMessage: "Could not reserve a payment amount right now. Try again in a minute." };
 
       const payment = reserved / 100;
-      const ref = await addDoc(collection(db, "deposits"), {
+      const referrerUid = (state.user && state.user.referredBy) || null;
+      const commission = referrerUid ? (amount * referralPercent()) / 100 : 0;
+      const ref = await addDoc(collection(db, "transactions"), {
         userId: currentUser.uid,
+        type: "topup",
+        referrerUid: referrerUid,
+        commission: commission,
         method: "bank",
         amount: amount,
         paymentAmount: payment,
@@ -4132,7 +4662,7 @@
     function watchDeposit(id) {
       if (flow.unsub) flow.unsub();
       flow.unsub = onSnapshot(
-        doc(db, "deposits", id),
+        doc(db, "transactions", id),
         (snap) => {
           const status = String((snap.data() || {}).status || "").toLowerCase();
           if (status === "success" || status === "completed" || status === "credited") finishDeposit();
@@ -4651,6 +5181,292 @@
       txFilter.cat = chip.dataset.cat;
       renderTxPage();
     });
+
+    /* =====================================================
+       NOTIFICATIONS
+       ===================================================== */
+
+    let notifTab = "all";
+
+    function notifEntries() {
+      const cur = currentCurrency();
+      const items = [];
+      const covered = new Set();
+
+      (state.announcements || [])
+        .filter((a) => a.active !== false)
+        .forEach((a) => items.push({ kind: "announcement", title: a.title || "", body: a.body || "", date: entryDate(a.createdAt) }));
+
+      (state.notifications || []).forEach((n) => {
+        if (n.depositId) covered.add(n.depositId);
+        items.push({ kind: "account", title: n.title || "", body: n.body || "", date: entryDate(n.createdAt) });
+      });
+
+      (state.deposits || []).forEach((d) => {
+        if (normStatus(d.status) !== "success" || covered.has(d.id)) return;
+        items.push({
+          kind: "account",
+          title: "Deposit confirmed",
+          body: money(d.amount, cur) + " was added to your wallet.",
+          date: entryDate(d.creditedAt || d.createdAt)
+        });
+      });
+
+      return items.sort((a, b) => b.date - a.date);
+    }
+
+    function renderNotifs() {
+      const box = $("notif-list");
+      if (state.announcements === null || state.notifications === null || state.deposits === null) {
+        box.innerHTML = '<p class="empty">Loading...</p>';
+        return;
+      }
+      const list = notifEntries().filter((n) => notifTab === "all" || n.kind === notifTab);
+      if (!list.length) {
+        box.innerHTML = '<p class="empty">No notifications yet.</p>';
+        return;
+      }
+      box.innerHTML = list
+        .map(
+          (n) =>
+            '<div class="notif"><div class="notif-ico ' + n.kind + '">' + icon(n.kind === "announcement" ? "megaphone" : "wallet") + "</div>" +
+            '<div class="notif-main"><div class="notif-title">' + esc(n.title) + "</div>" +
+            (n.body ? '<div class="notif-body">' + esc(n.body) + "</div>" : "") +
+            '<div class="notif-meta">' + (n.kind === "announcement" ? '<span class="notif-tag">Announcement</span>' : "") +
+            "<span>" + esc(n.date.toLocaleDateString("en-US", { month: "short", day: "numeric" })) + "</span></div></div></div>"
+        )
+        .join("");
+    }
+
+    $("notif-tabs").addEventListener("click", (event) => {
+      const tab = event.target.closest("[data-notif]");
+      if (!tab) return;
+      notifTab = tab.dataset.notif;
+      document.querySelectorAll("#notif-tabs .tab").forEach((other) => other.classList.toggle("is-active", other === tab));
+      renderNotifs();
+    });
+
+    /* =====================================================
+       REFER & EARN
+       ===================================================== */
+
+    function referralPercent() {
+      const v = Number(settingsNow().referralPercent);
+      return v > 0 ? v : DEFAULT_SETTINGS.referralPercent;
+    }
+
+    function unlockAmount() {
+      const v = Number(settingsNow().premiumUnlockAmount);
+      return v > 0 ? v : DEFAULT_SETTINGS.premiumUnlockAmount;
+    }
+
+    function discountPercent() {
+      const v = Number(settingsNow().premiumDiscountPercent);
+      return v > 0 ? v : DEFAULT_SETTINGS.premiumDiscountPercent;
+    }
+
+    function inviteLink() {
+      const code = state.user && state.user.referralCode;
+      return code ? location.origin + location.pathname + "#/signup?ref=" + encodeURIComponent(code) : "";
+    }
+
+    function makeCode() {
+      const letters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let out = "REP";
+      for (let i = 0; i < 6; i++) out += letters.charAt(Math.floor(Math.random() * letters.length));
+      return out;
+    }
+
+    let creatingCode = false;
+
+    /* Every user gets their own referral code, reserved in Firebase so nobody else can have it. */
+    async function maybeCreateReferralCode() {
+      if (creatingCode || signupInProgress || !currentUser || !state.userLoaded || !state.user || state.user.referralCode) return;
+      creatingCode = true;
+      try {
+        for (let attempt = 0; attempt < 8; attempt++) {
+          const code = makeCode();
+          let claimed = false;
+          try {
+            await setDoc(doc(db, "referralCodes", code), { uid: currentUser.uid, createdAt: serverTimestamp() });
+            claimed = true;
+          } catch (error) {
+            if (!error || error.code !== "permission-denied") throw error;
+          }
+          if (claimed) {
+            await setDoc(doc(db, "users", currentUser.uid), { referralCode: code }, { merge: true });
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("Could not create your referral code:", error);
+      } finally {
+        creatingCode = false;
+      }
+    }
+
+    function renderRefer() {
+      const cur = currentCurrency();
+      const u = state.user || {};
+      const pct = referralPercent();
+      const unlock = unlockAmount();
+      const off = discountPercent();
+      const balance = Number(u.referralBalance) || 0;
+      const earned = Number(u.referralEarned) || 0;
+      const premium = u.premium === true;
+
+      $("ref-balance").textContent = state.userLoaded ? money(balance, cur) : "\u2014";
+      $("ref-life").textContent = "Lifetime earnings: " + money(earned, cur);
+      $("ref-togo").textContent = premium ? "Premium unlocked" : money(Math.max(0, unlock - earned), cur, 0) + " to go";
+      $("ref-prog").textContent = money(earned, cur, 0) + " / " + money(unlock, cur, 0);
+      $("ref-bar-fill").style.width = Math.min(100, premium ? 100 : (earned / unlock) * 100) + "%";
+      $("ref-note").textContent = "You earn " + pct + "% of everything your friends deposit or buy.";
+      $("ref-lock").className = "ref-lock" + (premium ? " is-open" : "");
+      $("ref-lock").innerHTML = premium
+        ? icon("check") + "<span>Premium active: " + off + "% off everything</span>"
+        : icon("lock") + "<span>Unlock premium at " + money(unlock, cur, 0) + "</span>";
+
+      $("ref-code").textContent = u.referralCode || (state.userLoaded ? "Creating..." : "");
+      $("ref-link").textContent = inviteLink();
+
+      $("ref-steps").innerHTML = [
+        { n: 1, icon: "user-plus", title: "Invite a friend", text: "They sign up on repaid with your code or link." },
+        { n: 2, icon: "wallet", title: "You earn " + pct + "% every time", text: "Each time they deposit or buy anything, you earn " + pct + "% of the amount." },
+        { n: 3, icon: "gift", title: "Unlock premium", text: "Earn " + money(unlock, cur, 0) + " in total and unlock premium: " + off + "% off everything sold on repaid." }
+      ]
+        .map((s) => '<div class="step"><div class="step-ico">' + icon(s.icon) + "<em>" + s.n + "</em></div><div><b>" + esc(s.title) + "</b><p>" + esc(s.text) + "</p></div></div>")
+        .join("");
+
+      const list = state.referrals || [];
+      $("ref-invited").textContent = list.length + " invited";
+      $("ref-earned").textContent = money(list.reduce((sum, r) => sum + (Number(r.earned) || 0), 0), cur) + " earned";
+      if (state.referrals === null) {
+        $("ref-list").innerHTML = '<p class="empty">Loading...</p>';
+      } else if (!list.length) {
+        $("ref-list").innerHTML =
+          '<div class="ref-empty"><span class="ico">' + icon("inbox") + "</span><b>No referrals yet</b><p>Share your link. You earn " + pct + "% on everything your friends deposit or buy.</p></div>";
+      } else {
+        $("ref-list").innerHTML = list
+          .slice()
+          .sort((a, b) => entryDate(b.joinedAt) - entryDate(a.joinedAt))
+          .map(
+            (r) =>
+              '<div class="ref-person"><span class="av">' + esc((String(r.fullName || "?").charAt(0) || "?").toUpperCase()) + "</span>" +
+              '<div class="who"><b>' + esc(r.fullName || "Friend") + "</b><small>Joined " + esc(entryDate(r.joinedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })) + "</small></div>" +
+              '<span class="gain">+' + esc(money(Number(r.earned) || 0, cur)) + "</span></div>"
+          )
+          .join("");
+      }
+    }
+
+    async function copyText(value) {
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast("Copied.", true);
+      } catch (error) {
+        showToast("Could not copy. Copy it by hand instead.", false);
+      }
+    }
+
+    $("page-refer").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-ref-copy]");
+      if (!button) return;
+      const value = button.dataset.refCopy === "code" ? (state.user && state.user.referralCode) || "" : inviteLink();
+      if (!value) {
+        showToast("Your code is still being created. Try again in a moment.", false);
+        return;
+      }
+      copyText(value);
+    });
+
+    $("ref-share").addEventListener("click", async () => {
+      const link = inviteLink();
+      if (!link) {
+        showToast("Your code is still being created. Try again in a moment.", false);
+        return;
+      }
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: "Join me on repaid", text: "Sign up on repaid with my code " + state.user.referralCode, url: link });
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+      copyText(link);
+    });
+
+    /* =====================================================
+       CREDITING THE WALLET AND THE REFERRAL COMMISSION
+       (done here in the browser, locked down by the Firestore rules)
+       ===================================================== */
+
+    const claiming = new Set();
+
+    function claimPending() {
+      if (!currentUser) return;
+      (state.deposits || []).forEach((d) => {
+        if (normStatus(d.status) === "success" && d.walletCredited !== true && d.userId === currentUser.uid) claimDeposit(d);
+      });
+    }
+
+    /* One atomic batch: mark the deposit as credited, add it to the wallet,
+       and pay the referrer their commission. It is all or nothing. */
+    async function claimDeposit(d) {
+      if (claiming.has(d.id)) return;
+      claiming.add(d.id);
+      const uid = currentUser.uid;
+      const hasReferrer = Boolean(d.referrerUid) && Number(d.commission) > 0;
+
+      const build = (withFriendRecord) => {
+        const batch = writeBatch(db);
+        batch.update(doc(db, "transactions", d.id), { walletCredited: true, creditedAt: serverTimestamp() });
+        batch.update(doc(db, "users", uid), { walletBalance: increment(d.amount), lastClaimId: d.id });
+        if (hasReferrer) {
+          batch.update(doc(db, "users", d.referrerUid), {
+            referralBalance: increment(d.commission),
+            referralEarned: increment(d.commission),
+            lastCommissionId: d.id
+          });
+          if (withFriendRecord) {
+            batch.update(doc(db, "users", d.referrerUid, "referrals", uid), {
+              earned: increment(d.commission),
+              totalFunded: increment(d.amount),
+              lastTx: d.id
+            });
+          }
+        }
+        return batch;
+      };
+
+      try {
+        try {
+          await build(true).commit();
+        } catch (first) {
+          if (!hasReferrer) throw first;
+          console.warn("Retrying without the friend record:", first);
+          await build(false).commit();
+        }
+      } catch (error) {
+        console.error("Could not add the deposit to the wallet:", error);
+        showToast("We could not add your deposit to your wallet. Please chat with support.", false);
+      }
+    }
+
+    /* Once your total referral earnings reach the unlock amount, premium switches on. */
+    let unlockingPremium = false;
+
+    async function maybeUnlockPremium() {
+      const u = state.user;
+      if (unlockingPremium || !currentUser || !state.userLoaded || !u || u.premium === true) return;
+      if ((Number(u.referralEarned) || 0) < unlockAmount()) return;
+      unlockingPremium = true;
+      try {
+        await updateDoc(doc(db, "users", currentUser.uid), { premium: true });
+      } catch (error) {
+        console.warn("Could not switch premium on:", error);
+      }
+    }
   </script>
 </body>
 </html>
