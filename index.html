@@ -1376,6 +1376,758 @@
       background: #e6edff;
       color: var(--blue);
     }
+
+    /* =====================================================
+       WALLET PAGE, PAYMENT FLOW, CHAT AND POP-UPS
+       ===================================================== */
+
+    .panel {
+      margin-top: 16px;
+      padding: 20px 16px 16px;
+      border: 1px solid #e3e3e3;
+      border-radius: 12px;
+      background: #fcfcfc;
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 24px;
+    }
+
+    .panel .sub {
+      margin: 4px 0 0;
+      font-size: 14px;
+      line-height: 19px;
+      color: #6b6b6b;
+    }
+
+    .panel .tabs {
+      margin: 16px 0 0;
+    }
+
+    .field-label {
+      margin: 18px 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .amount-input {
+      display: block;
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      border: 1px solid #dcdcdc;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .amount-input:focus-visible {
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+
+    .min-note {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: #6b6b6b;
+    }
+
+    .quick-amounts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .quick-btn {
+      height: 36px;
+      padding: 0 14px;
+      border: 1px solid #dcdcdc;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .quick-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .primary-btn {
+      display: block;
+      width: 100%;
+      height: 48px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .panel-note {
+      margin: 12px 0 0;
+      text-align: center;
+      font-size: 13px;
+      color: #6b6b6b;
+    }
+
+    .pill {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .pill-pending {
+      background: #fff3e0;
+      color: #b8671a;
+    }
+
+    .pill-success {
+      background: #e6f4ea;
+      color: #137333;
+    }
+
+    .pill-expired {
+      background: #fce8e6;
+      color: #c0392b;
+    }
+
+    .tx-right {
+      text-align: right;
+      flex: none;
+    }
+
+    /* payment flow */
+
+    .flow {
+      position: fixed;
+      inset: 0;
+      z-index: 950;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+      background: #ffffff;
+    }
+
+    .flow.is-open {
+      display: flex;
+    }
+
+    .flow-banner {
+      padding: calc(13px + env(safe-area-inset-top, 0px)) 20px 13px;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .flow-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .flow-top .t {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .flow-cancel {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: #d93025;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .flow-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    .flow-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .flow-who {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-size: 14px;
+      color: #555555;
+    }
+
+    .flow-email {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .flow-dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      flex: none;
+    }
+
+    .flow-amt {
+      text-align: right;
+      flex: none;
+    }
+
+    .flow-amt b {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .flow-amt small {
+      font-size: 12px;
+      color: #8a8a8a;
+    }
+
+    .flow-heading {
+      margin: 6px 0 20px;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 32px;
+    }
+
+    .method-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 15px 4px;
+      border: 0;
+      border-bottom: 1px solid #ececec;
+      background: none;
+      color: #000000;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .method-row:first-child {
+      border-top: 1px solid #ececec;
+    }
+
+    .method-row[disabled] {
+      color: #b3b3b3;
+      cursor: not-allowed;
+    }
+
+    .method-ico {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #e6edff;
+      color: var(--blue);
+      flex: none;
+    }
+
+    .method-row[disabled] .method-ico {
+      background: #f1f1f1;
+      color: #b3b3b3;
+    }
+
+    .method-ico svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .method-soon {
+      margin-left: auto;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: #f1f1f1;
+      color: #8a8a8a;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .transfer-note {
+      margin: 0 0 16px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .transfer-box {
+      padding: 16px;
+      border: 2px solid var(--blue);
+      border-radius: 14px;
+    }
+
+    .t-row + .t-row {
+      margin-top: 14px;
+    }
+
+    .t-label {
+      margin-bottom: 3px;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #8a8a8a;
+    }
+
+    .t-value {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .t-value.small {
+      font-size: 16px;
+    }
+
+    .copy-btn {
+      padding: 5px 10px;
+      border: 0;
+      border-radius: 8px;
+      background: #e6edff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .expiry-note {
+      margin: 16px 0 22px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #f4f4f4;
+      font-size: 13px;
+      line-height: 19px;
+      color: #555555;
+    }
+
+    .flow-body .primary-btn {
+      margin-top: auto;
+    }
+
+    .confirm-msg {
+      margin: 0 0 24px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 22px;
+      color: #555555;
+    }
+
+    .confirm-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      border: 1px solid #e3e3e3;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .check-dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #16a34a;
+      color: #ffffff;
+    }
+
+    .check-dot svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 3;
+    }
+
+    .mini-spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #e2e2e2;
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .confirm-pending {
+      display: none;
+      margin: 8px 0 0;
+      text-align: center;
+      font-size: 14px;
+      line-height: 21px;
+      color: #555555;
+    }
+
+    .secondary-btn {
+      display: none;
+      width: 100%;
+      height: 46px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 10px;
+      background: #f0f0f0;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* AI chat */
+
+    .chat {
+      position: fixed;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      z-index: 920;
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+      height: min(600px, calc(100dvh - 16px));
+      margin: 0 auto;
+      border-radius: 20px;
+      background: #ffffff;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transform: translateY(110%);
+      visibility: hidden;
+      transition: transform 0.28s ease;
+    }
+
+    .chat.is-open {
+      transform: none;
+      visibility: visible;
+    }
+
+    .chat-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .chat-bot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--blue);
+      flex: none;
+    }
+
+    .chat-bot svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .chat-head .who {
+      flex: 1;
+    }
+
+    .chat-head .who b {
+      display: block;
+      font-size: 16px;
+    }
+
+    .chat-head .who small {
+      font-size: 12.5px;
+      opacity: 0.9;
+    }
+
+    .chat-close {
+      display: flex;
+      padding: 4px;
+      border: 0;
+      background: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .chat-close span {
+      display: flex;
+    }
+
+    .chat-close svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      padding: 16px;
+      background: #f6f7fb;
+      overflow-y: auto;
+    }
+
+    .msg {
+      max-width: 84%;
+      padding: 10px 13px;
+      border-radius: 16px;
+      font-size: 14.5px;
+      line-height: 20px;
+      white-space: pre-wrap;
+    }
+
+    .msg-bot {
+      align-self: flex-start;
+      border: 1px solid #e6e8ef;
+      border-bottom-left-radius: 4px;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .chat-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-height: 150px;
+      padding: 10px 14px;
+      border-top: 1px solid #ececec;
+      background: #ffffff;
+      overflow-y: auto;
+    }
+
+    .chip {
+      padding: 8px 13px;
+      border: 1px solid var(--blue);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--blue);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid #ececec;
+      background: #ffffff;
+    }
+
+    .chat-form input {
+      flex: 1;
+      min-width: 0;
+      height: 42px;
+      padding: 0 14px;
+      border: 1px solid #dcdcdc;
+      border-radius: 999px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .chat-form input:focus-visible {
+      border-color: var(--blue);
+    }
+
+    .chat-send {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .chat-send span {
+      display: flex;
+    }
+
+    .chat-send svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* pop-ups */
+
+    .popup {
+      position: fixed;
+      inset: 0;
+      z-index: 930;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .popup.is-open {
+      display: flex;
+    }
+
+    .popup-card {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      padding: 26px 22px 18px;
+      border-radius: 24px;
+      background: #ffffff;
+      text-align: center;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.92);
+        opacity: 0;
+      }
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(0.85);
+        opacity: 0.7;
+      }
+      to {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .popup-x {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #f1f1f1;
+      color: #444444;
+      cursor: pointer;
+    }
+
+    .popup-x span {
+      display: flex;
+    }
+
+    .popup-x svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .popup-art {
+      display: flex;
+      justify-content: center;
+      margin: 4px 0 14px;
+    }
+
+    .popup-art svg {
+      width: 150px;
+      height: 150px;
+    }
+
+    .popup-title {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 28px;
+    }
+
+    .popup-body {
+      margin: 10px 0 0;
+      font-size: 14.5px;
+      line-height: 21px;
+      color: #555555;
+    }
+
+    .popup-later {
+      margin-top: 8px;
+      padding: 8px;
+      border: 0;
+      background: none;
+      color: #6b6b6b;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .popup-count {
+      font-size: 12px;
+      color: #9a9a9a;
+    }
   </style>
 </head>
 <body>
@@ -1607,7 +2359,7 @@
       </div>
     </header>
 
-    <main class="app-inner">
+    <main class="app-inner" id="page-dashboard">
       <section class="wallet" aria-label="Wallet">
         <div class="wallet-label" id="wallet-label">Wallet</div>
         <div class="wallet-balance" id="wallet-balance">&mdash;</div>
@@ -1645,7 +2397,117 @@
       </section>
     </main>
 
+    <!-- ===================== WALLET PAGE ===================== -->
+    <main class="app-inner" id="page-wallet" hidden>
+      <section class="wallet" aria-label="Wallet balance">
+        <div class="wallet-label" id="wallet2-label">Wallet</div>
+        <div class="wallet-balance" id="wallet2-balance">&mdash;</div>
+      </section>
+
+      <section class="panel" aria-label="Fund wallet">
+        <h2>Fund wallet</h2>
+        <p class="sub">Add money to your wallet</p>
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab is-active" role="tab">Bank Transfer</button>
+          <button type="button" class="tab" role="tab" disabled style="opacity: 0.55; cursor: not-allowed">Card (Soon)</button>
+        </div>
+        <div class="field-label" id="amount-label">Amount</div>
+        <input class="amount-input" id="amount-input" type="number" inputmode="numeric" min="0" placeholder="Enter amount" />
+        <p class="min-note" id="min-note"></p>
+        <div class="quick-amounts" id="quick-amounts"></div>
+        <button type="button" class="primary-btn" id="open-payment" disabled>Open payment</button>
+        <p class="panel-note">You will be given a unique amount to transfer</p>
+      </section>
+
+      <h2 class="section-title">Wallet funds</h2>
+      <section class="panel" style="margin-top: 0; padding-top: 4px; padding-bottom: 4px">
+        <div id="funds-list"></div>
+      </section>
+    </main>
+
     <button type="button" class="fab" id="fab" aria-label="Support"><span data-icon="chat"></span></button>
+
+    <!-- Payment flow: how would you like to pay -->
+    <div class="flow" id="flow-method">
+      <div class="flow-top"><div class="t">Top Up</div><button type="button" class="flow-cancel" id="cancel-method">Cancel</button></div>
+      <div class="flow-body">
+        <div class="flow-summary">
+          <div class="flow-who"><span class="flow-dot"></span><span class="flow-email"></span></div>
+          <div class="flow-amt"><b class="flow-amount"></b><small>Amount</small></div>
+        </div>
+        <h1 class="flow-heading">How would you like to pay?</h1>
+        <div>
+          <button type="button" class="method-row" disabled><span class="method-ico" data-icon="wallet"></span>Card<span class="method-soon">Soon</span></button>
+          <button type="button" class="method-row" disabled><span class="method-ico" data-icon="smartphone"></span>USSD<span class="method-soon">Soon</span></button>
+          <button type="button" class="method-row" id="select-bank"><span class="method-ico" data-icon="bank"></span>Bank Transfer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment flow: account details -->
+    <div class="flow" id="flow-details">
+      <div class="flow-banner">You have <span id="flow-timer">00:00</span> to complete this payment</div>
+      <div class="flow-top"><div class="t">Bank Transfer</div><button type="button" class="flow-cancel" id="cancel-details">Cancel</button></div>
+      <div class="flow-body">
+        <div class="flow-summary">
+          <div class="flow-who"><span class="flow-dot"></span><span class="flow-email"></span></div>
+          <div class="flow-amt"><b class="flow-amount"></b><small>Amount</small></div>
+        </div>
+        <p class="transfer-note">Open your bank app and transfer this exact amount</p>
+        <div class="transfer-box">
+          <div class="t-row"><div class="t-label">Amount</div><div class="t-value"><span id="pay-amount"></span><button type="button" class="copy-btn" data-copy="amount">Copy</button></div></div>
+          <div class="t-row"><div class="t-label">Account number</div><div class="t-value"><span id="pay-account"></span><button type="button" class="copy-btn" data-copy="account">Copy</button></div></div>
+          <div class="t-row"><div class="t-label">Bank name</div><div class="t-value small" id="pay-bank"></div></div>
+          <div class="t-row"><div class="t-label">Account name</div><div class="t-value small" id="pay-name"></div></div>
+        </div>
+        <p class="expiry-note">Transfer the exact amount shown, including the kobo. This amount is unique to you and expires when the timer runs out.</p>
+        <button type="button" class="primary-btn" id="made-transfer">I have made this bank transfer</button>
+      </div>
+    </div>
+
+    <!-- Payment flow: confirming -->
+    <div class="flow" id="flow-confirm">
+      <div class="flow-top"><div class="t">Bank Transfer</div></div>
+      <div class="flow-body">
+        <div class="flow-summary">
+          <div class="flow-who"><span class="flow-dot"></span><span class="flow-email"></span></div>
+          <div class="flow-amt"><b class="flow-amount"></b><small>Amount</small></div>
+        </div>
+        <p class="confirm-msg" id="confirm-msg"></p>
+        <div class="confirm-row"><span>Payment made</span><span class="check-dot"><span data-icon="check"></span></span></div>
+        <div class="confirm-row"><span>Payment confirmed</span><span id="confirm-indicator"><span class="mini-spinner"></span></span></div>
+        <p class="confirm-pending" id="confirm-pending">We have not detected your transfer yet. It will still be credited automatically once your payment is detected, so you can check your wallet later.</p>
+        <button type="button" class="secondary-btn" id="confirm-close">Close</button>
+      </div>
+    </div>
+
+    <!-- AI chat -->
+    <section class="chat" id="chat" aria-label="AI support" aria-hidden="true">
+      <div class="chat-head">
+        <span class="chat-bot" data-icon="chat"></span>
+        <div class="who"><b>AI Support</b><small>Online now</small></div>
+        <button type="button" class="chat-close" id="chat-close" aria-label="Close chat"><span data-icon="close"></span></button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-options" id="chat-options"></div>
+      <form class="chat-form" id="chat-form" autocomplete="off">
+        <input id="chat-input" type="text" placeholder="Type your message..." />
+        <button type="submit" class="chat-send" aria-label="Send"><span data-icon="send"></span></button>
+      </form>
+    </section>
+
+    <!-- Pop-ups after login -->
+    <div class="popup" id="popup" role="dialog" aria-modal="true">
+      <div class="popup-card">
+        <button type="button" class="popup-x" id="popup-x" aria-label="Close"><span data-icon="close"></span></button>
+        <div class="popup-art" id="popup-art"></div>
+        <h2 class="popup-title" id="popup-title"></h2>
+        <p class="popup-body" id="popup-body"></p>
+        <button type="button" class="primary-btn" id="popup-primary"></button>
+        <button type="button" class="popup-later" id="popup-later">Maybe later</button>
+        <div class="popup-count" id="popup-count"></div>
+      </div>
+    </div>
 
     <div class="scrim" id="scrim"></div>
     <aside class="drawer" id="drawer" aria-hidden="true">
@@ -1872,11 +2734,16 @@
       doc,
       getDoc,
       setDoc,
+      addDoc,
       onSnapshot,
       collection,
       query,
       orderBy,
       limit,
+      where,
+      Timestamp,
+      updateDoc,
+      deleteDoc,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -1921,12 +2788,15 @@
     let currentUser = null;
     let authResolved = false;
 
+    const appPages = ["dashboard", "wallet"];
+    let currentPage = "dashboard";
+
     function route() {
       if (!authResolved) return;
 
       let name = location.hash.replace(/^#\/?/, "");
       if (currentUser) {
-        name = "dashboard";
+        if (!appPages.includes(name)) name = "dashboard";
       } else if (!authPages.includes(name)) {
         name = "login";
       }
@@ -1934,13 +2804,21 @@
       const target = "#/" + name;
       if (location.hash !== target) history.replaceState(null, "", target);
 
-      const onDashboard = name === "dashboard";
-      authShell.hidden = onDashboard;
-      appShell.hidden = !onDashboard;
+      const inApp = appPages.includes(name);
+      authShell.hidden = inApp;
+      appShell.hidden = !inApp;
       authPages.forEach((key) => {
         views[key].hidden = key !== name;
       });
-      document.title = onDashboard ? "Dashboard | repaid" : views[name].dataset.title;
+
+      if (inApp) {
+        currentPage = name;
+        $("page-dashboard").hidden = name !== "dashboard";
+        $("page-wallet").hidden = name !== "wallet";
+        renderMenu();
+      }
+
+      document.title = name === "dashboard" ? "Dashboard | repaid" : name === "wallet" ? "Wallet | repaid" : views[name].dataset.title;
       window.scrollTo(0, 0);
     }
 
@@ -2073,7 +2951,7 @@
     let busy = false;
 
     /* Spinner, then the dove, then (optionally) a message. Used by every button. */
-    async function runAction({ task, successText, onSuccess, silent }) {
+    async function runAction({ task, successText, silent, beforeDove }) {
       if (busy) return;
       busy = true;
 
@@ -2097,6 +2975,7 @@
       }
 
       if (ok && typeof successText === "function") text = successText(result.value);
+      if (ok && beforeDove) beforeDove(result.value);
 
       spinner.hidden = true;
       await flyDove(ok);
@@ -2106,8 +2985,8 @@
 
     }
 
-    /* Links to another page: spinner, dove flies up, new page is ready underneath. No message. */
-    async function goToPage(hash) {
+    /* Spinner, dove flies up, and whatever you pass in happens underneath. No message. */
+    async function transition(fn) {
       if (busy) return;
       busy = true;
 
@@ -2116,11 +2995,32 @@
       await wait(700);
 
       spinner.hidden = true;
-      location.hash = hash;
+      fn();
       await flyDove(true);
 
       overlay.hidden = true;
       busy = false;
+    }
+
+    function goToPage(hash) {
+      return transition(() => {
+        location.hash = hash;
+      });
+    }
+
+    /* Show the dove (and a message) without a spinner, for results that arrive later. */
+    async function playOutcome(ok, text) {
+      if (busy) {
+        showToast(text, ok);
+        return;
+      }
+      busy = true;
+      overlay.hidden = false;
+      spinner.hidden = true;
+      await flyDove(ok);
+      overlay.hidden = true;
+      busy = false;
+      showToast(text, ok);
     }
 
     document.addEventListener("click", (event) => {
@@ -2288,6 +3188,8 @@
       settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
       profile: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.66V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.66"/>',
       headset: '<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 15a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2zM3 15a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"/><path d="M21 17v1a3 3 0 0 1-3 3h-4"/>',
+      bank: '<path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/>',
+      check: '<path d="M20 6 9 17l-5-5"/>',
       logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>'
     };
 
@@ -2328,7 +3230,10 @@
       telegramTitle: "Join Our Telegram",
       telegramSubtitle: "Get free virtual numbers",
       telegramButton: "Join Now",
-      numbersNotice: "Buy a phone number for 7 minutes. Credits are only used if you receive the SMS code."
+      numbersNotice: "Buy a phone number for 7 minutes. Credits are only used if you receive the SMS code.",
+      minDeposit: 1000,
+      quickAmounts: [1000, 2000, 5000, 10000],
+      depositWindowSeconds: 180
     };
 
     const state = {
@@ -2338,6 +3243,8 @@
       services: null,
       numberServices: null,
       transactions: null,
+      deposits: null,
+      faqs: null,
       errors: {},
       filter: ""
     };
@@ -2349,16 +3256,17 @@
       return (state.user && state.user.currency) || (state.settings && state.settings.defaultCurrency) || null;
     }
 
-    function money(amount, currency) {
+    function money(amount, currency, digits) {
       const value = Number(amount) || 0;
+      const d = digits === undefined ? 2 : digits;
       if (currency) {
         try {
-          return new Intl.NumberFormat(undefined, { style: "currency", currency: currency, currencyDisplay: "narrowSymbol" }).format(value);
+          return new Intl.NumberFormat(undefined, { style: "currency", currency: currency, currencyDisplay: "narrowSymbol", minimumFractionDigits: d, maximumFractionDigits: d }).format(value);
         } catch (error) {
-          return currency + " " + value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          return currency + " " + value.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
         }
       }
-      return value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return value.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
     }
 
     function formatDate(value) {
@@ -2406,16 +3314,18 @@
 
     function renderWallet() {
       const cur = currentCurrency();
-      $("wallet-label").textContent = cur ? cur + " Wallet" : "Wallet";
-      const el = $("wallet-balance");
-      if (!state.userLoaded) {
-        el.textContent = "\u2014";
-        return;
-      }
-      const bal = typeof state.user.walletBalance === "number" ? state.user.walletBalance : 0;
-      const text = money(bal, cur);
-      el.textContent = text;
-      el.style.fontSize = Math.max(20, Math.min(38, Math.floor(330 / (text.length * 0.6)))) + "px";
+      [["wallet-label", "wallet-balance"], ["wallet2-label", "wallet2-balance"]].forEach((pair) => {
+        $(pair[0]).textContent = cur ? cur + " Wallet" : "Wallet";
+        const el = $(pair[1]);
+        if (!state.userLoaded) {
+          el.textContent = "\u2014";
+          return;
+        }
+        const bal = typeof state.user.walletBalance === "number" ? state.user.walletBalance : 0;
+        const text = money(bal, cur);
+        el.textContent = text;
+        el.style.fontSize = Math.max(20, Math.min(38, Math.floor(330 / (text.length * 0.6)))) + "px";
+      });
     }
 
     function settingsNow() {
@@ -2516,8 +3426,8 @@
 
       $("menu-scroll").innerHTML =
         '<div class="menu-label">Main</div>' +
-        menuItem("Dashboard", "home", true) +
-        menuItem("Wallet", "wallet") +
+        menuItem("Dashboard", "home", currentPage === "dashboard") +
+        menuItem("Wallet", "wallet", currentPage === "wallet") +
         menuItem("Transactions", "receipt") +
         menuItem("Notifications", "bell") +
         menuItem("Refer & Earn", "share") +
@@ -2538,6 +3448,8 @@
       renderNotice();
       renderNumbers();
       renderTransactions();
+      renderQuick();
+      renderFunds();
       renderMenu();
     }
 
@@ -2596,10 +3508,18 @@
       listen(query(collection(db, "users", user.uid, "transactions"), orderBy("createdAt", "desc"), limit(50)), "transactions", (snap) => {
         state.transactions = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
       });
+      listen(query(collection(db, "deposits"), where("userId", "==", user.uid), limit(50)), "deposits", (snap) => {
+        const millis = (t) => (t && typeof t.toMillis === "function" ? t.toMillis() : Date.now());
+        state.deposits = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => millis(b.createdAt) - millis(a.createdAt));
+      });
+      listen(collection(db, "faqs"), "faqs", (snap) => {
+        state.faqs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      });
       ensureProfile(user);
     }
 
     function stopDashboard() {
+      resetUi();
       unsubscribers.forEach((unsubscribe) => unsubscribe());
       unsubscribers = [];
       state.user = null;
@@ -2608,6 +3528,8 @@
       state.services = null;
       state.numberServices = null;
       state.transactions = null;
+      state.deposits = null;
+      state.faqs = null;
       state.errors = {};
       state.filter = "";
       $("service-search").value = "";
@@ -2619,7 +3541,11 @@
       authResolved = true;
       if (user) {
         startDashboard(user);
+        schedulePopups();
       } else {
+        try {
+          sessionStorage.removeItem(POPUP_KEY);
+        } catch (error) {}
         stopDashboard();
       }
       route();
@@ -2671,8 +3597,9 @@
       if (!button) return;
       const label = button.dataset.menu;
       closeDrawer();
-      if (label === "Dashboard") return;
-      if (label === "Support") return openSupport();
+      if (label === "Dashboard") return currentPage === "dashboard" ? undefined : goToPage("#/dashboard");
+      if (label === "Wallet") return currentPage === "wallet" ? undefined : goToPage("#/wallet");
+      if (label === "Support") return openChat();
       comingSoon(label + " is coming soon.");
     });
 
@@ -2692,9 +3619,9 @@
       runAction({ task: () => Promise.reject({ userMessage: "The Telegram link has not been set up yet." }), successText: "" });
     });
 
-    $("fund-btn").addEventListener("click", () => comingSoon("Wallet funding is coming soon."));
+    $("fund-btn").addEventListener("click", () => goToPage("#/wallet"));
     $("avatar-btn").addEventListener("click", () => comingSoon("Profile is coming soon."));
-    $("fab").addEventListener("click", openSupport);
+    $("fab").addEventListener("click", openChat);
 
     $("number-list").addEventListener("click", (event) => {
       const button = event.target.closest("[data-price]");
@@ -2721,13 +3648,548 @@
       renderNumbers();
     });
 
-    document.querySelectorAll(".tab").forEach((tab) => {
+    document.querySelectorAll(".history .tab").forEach((tab) => {
       tab.addEventListener("click", () => {
-        document.querySelectorAll(".tab").forEach((other) => other.classList.toggle("is-active", other === tab));
+        document.querySelectorAll(".history .tab").forEach((other) => other.classList.toggle("is-active", other === tab));
         $("panel-purchase").hidden = tab.dataset.tab !== "purchase";
         $("panel-transactions").hidden = tab.dataset.tab !== "transactions";
       });
     });
+
+    /* =====================================================
+       WALLET PAGE, PAYMENTS, AI CHAT AND POP-UPS
+       ===================================================== */
+
+    function minDeposit() {
+      const value = Number(settingsNow().minDeposit);
+      return value > 0 ? value : DEFAULT_SETTINGS.minDeposit;
+    }
+
+    function renderQuick() {
+      const cfg = settingsNow();
+      const cur = currentCurrency();
+      const list = Array.isArray(cfg.quickAmounts) ? cfg.quickAmounts : DEFAULT_SETTINGS.quickAmounts;
+      $("quick-amounts").innerHTML = list
+        .map((a) => '<button type="button" class="quick-btn" data-amount="' + esc(a) + '">' + esc(money(a, cur, 0)) + "</button>")
+        .join("");
+      $("min-note").textContent = "Minimum " + money(minDeposit(), cur, 0);
+      $("amount-label").textContent = cur ? "Amount (" + cur + ")" : "Amount";
+      checkAmount();
+    }
+
+    function checkAmount() {
+      $("open-payment").disabled = !(Number($("amount-input").value) >= minDeposit());
+    }
+
+    function renderFunds() {
+      const box = $("funds-list");
+      if (state.errors.deposits) {
+        box.innerHTML = '<p class="empty">Could not load your deposits right now.</p>';
+        return;
+      }
+      if (state.deposits === null) {
+        box.innerHTML = '<p class="empty">Loading...</p>';
+        return;
+      }
+      if (!state.deposits.length) {
+        box.innerHTML = '<p class="empty">No deposits yet.</p>';
+        return;
+      }
+      const cur = currentCurrency();
+      box.innerHTML = state.deposits
+        .map((d) => {
+          const status = String(d.status || "pending").toLowerCase();
+          const kind = status === "success" || status === "completed" || status === "credited" ? "success" : status === "expired" ? "expired" : "pending";
+          return (
+            '<div class="tx-row"><div><div class="tx-title">Bank transfer</div><div class="tx-date">' + esc(formatDate(d.createdAt)) + "</div></div>" +
+            '<div class="tx-right"><div class="tx-amount">+' + esc(money(d.amount, cur)) + '</div><span class="pill pill-' + kind + '">' + esc(status) + "</span></div></div>"
+          );
+        })
+        .join("");
+    }
+
+    $("amount-input").addEventListener("input", checkAmount);
+    $("quick-amounts").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-amount]");
+      if (!button) return;
+      $("amount-input").value = button.dataset.amount;
+      checkAmount();
+    });
+
+    /* ---------- payment flow ---------- */
+
+    const FLOW_SCREENS = ["flow-method", "flow-details", "flow-confirm"];
+    const flow = { amount: 0, id: null, lockId: null, payment: 0, endsAt: 0, timer: null, verifyTimer: null, unsub: null, done: false };
+
+    function showFlow(id) {
+      FLOW_SCREENS.forEach((name) => $(name).classList.toggle("is-open", name === id));
+      document.body.style.overflow = "hidden";
+    }
+
+    function hideFlows() {
+      FLOW_SCREENS.forEach((name) => $(name).classList.remove("is-open"));
+      document.body.style.overflow = "";
+    }
+
+    function clearFlowTimers() {
+      clearInterval(flow.timer);
+      clearInterval(flow.verifyTimer);
+      if (flow.unsub) {
+        flow.unsub();
+        flow.unsub = null;
+      }
+    }
+
+    function fillFlowSummary() {
+      const name = displayName();
+      const initial = (name.charAt(0) || "?").toUpperCase();
+      document.querySelectorAll(".flow-dot").forEach((el) => (el.textContent = initial));
+      document.querySelectorAll(".flow-email").forEach((el) => (el.textContent = (currentUser && currentUser.email) || ""));
+      document.querySelectorAll(".flow-amount").forEach((el) => (el.textContent = money(flow.amount, currentCurrency(), 0)));
+    }
+
+    async function closeFlow(expire) {
+      clearFlowTimers();
+      const id = flow.id;
+      const lockId = flow.lockId;
+      flow.id = null;
+      flow.lockId = null;
+      flow.done = false;
+      hideFlows();
+      if (expire && id) {
+        try {
+          await updateDoc(doc(db, "deposits", id), { status: "expired", expiredAt: serverTimestamp() });
+        } catch (error) {
+          console.warn("Could not mark the deposit as expired:", error);
+        }
+        try {
+          await deleteDoc(doc(db, "amountLocks", lockId));
+        } catch (error) {
+          console.warn("Could not release the payment amount:", error);
+        }
+      }
+    }
+
+    /* Reserve a payment amount nobody else is using, then create the deposit record. */
+    async function createDeposit(amount) {
+      const cfg = settingsNow();
+      if (!cfg.accountNumber || !cfg.bankName || !cfg.accountName) {
+        throw { userMessage: "Payment account details have not been set up yet." };
+      }
+      const windowSeconds = Number(cfg.depositWindowSeconds) > 0 ? Number(cfg.depositWindowSeconds) : DEFAULT_SETTINGS.depositWindowSeconds;
+
+      let reserved = null;
+      for (let attempt = 0; attempt < 25 && !reserved; attempt++) {
+        const kobo = Math.floor(Math.random() * 999) + 1;
+        const total = Math.round(amount * 100) + kobo;
+        try {
+          await setDoc(doc(db, "amountLocks", String(total)), {
+            userId: currentUser.uid,
+            createdAt: serverTimestamp(),
+            expiresAt: Timestamp.fromMillis(Date.now() + 30 * 60 * 1000)
+          });
+          reserved = total;
+        } catch (error) {
+          if (!error || error.code !== "permission-denied") throw error;
+        }
+      }
+      if (!reserved) throw { userMessage: "Could not reserve a payment amount right now. Try again in a minute." };
+
+      const payment = reserved / 100;
+      const ref = await addDoc(collection(db, "deposits"), {
+        userId: currentUser.uid,
+        method: "bank",
+        amount: amount,
+        paymentAmount: payment,
+        paymentKobo: reserved,
+        status: "pending",
+        createdAt: serverTimestamp(),
+        expiresAt: Timestamp.fromMillis(Date.now() + windowSeconds * 1000)
+      });
+      return { id: ref.id, lockId: String(reserved), payment: payment, windowSeconds: windowSeconds };
+    }
+
+    function fmtClock(totalSeconds) {
+      const m = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
+      const sec = Math.floor(totalSeconds % 60).toString().padStart(2, "0");
+      return m + ":" + sec;
+    }
+
+    function startFlowTimer(windowSeconds) {
+      clearInterval(flow.timer);
+      flow.endsAt = Date.now() + windowSeconds * 1000;
+      const tick = () => {
+        const left = Math.max(0, Math.ceil((flow.endsAt - Date.now()) / 1000));
+        $("flow-timer").textContent = fmtClock(left);
+        if (left <= 0) {
+          clearInterval(flow.timer);
+          closeFlow(true);
+          playOutcome(false, "Payment time expired. Please start again.");
+        }
+      };
+      tick();
+      flow.timer = setInterval(tick, 500);
+    }
+
+    function watchDeposit(id) {
+      if (flow.unsub) flow.unsub();
+      flow.unsub = onSnapshot(
+        doc(db, "deposits", id),
+        (snap) => {
+          const status = String((snap.data() || {}).status || "").toLowerCase();
+          if (status === "success" || status === "completed" || status === "credited") finishDeposit();
+        },
+        (error) => console.warn("Could not watch the deposit:", error)
+      );
+    }
+
+    function finishDeposit() {
+      if (flow.done) return;
+      flow.done = true;
+      clearInterval(flow.timer);
+      clearInterval(flow.verifyTimer);
+      showFlow("flow-confirm");
+      $("confirm-indicator").innerHTML = '<span class="check-dot">' + icon("check") + "</span>";
+      $("confirm-msg").innerHTML = "Your deposit has been <strong>successfully credited</strong> to your wallet.";
+      $("confirm-pending").style.display = "none";
+      $("confirm-close").style.display = "none";
+      setTimeout(async () => {
+        await closeFlow(false);
+        playOutcome(true, "Deposit successful. Your wallet has been credited.");
+      }, 1200);
+    }
+
+    function startVerification() {
+      const msg = $("confirm-msg");
+      $("confirm-indicator").innerHTML = '<span class="mini-spinner"></span>';
+      $("confirm-pending").style.display = "none";
+      $("confirm-close").style.display = "none";
+      let left = 60;
+      const write = () => {
+        msg.innerHTML = "We are confirming your transfer. This could take about " + left + " seconds.<br><strong>Please do not refresh this page.</strong>";
+      };
+      write();
+      clearInterval(flow.verifyTimer);
+      flow.verifyTimer = setInterval(() => {
+        left--;
+        write();
+        if (left <= 0) {
+          clearInterval(flow.verifyTimer);
+          $("confirm-pending").style.display = "block";
+          $("confirm-close").style.display = "block";
+        }
+      }, 1000);
+    }
+
+    function fillDetails() {
+      const cfg = settingsNow();
+      $("pay-amount").textContent = money(flow.payment, currentCurrency());
+      $("pay-account").textContent = cfg.accountNumber;
+      $("pay-bank").textContent = cfg.bankName;
+      $("pay-name").textContent = cfg.accountName;
+      fillFlowSummary();
+    }
+
+    $("open-payment").addEventListener("click", () => {
+      const amount = Number($("amount-input").value);
+      if (!(amount >= minDeposit())) {
+        problem("The minimum deposit is " + money(minDeposit(), currentCurrency(), 0) + ".", $("amount-input"));
+        return;
+      }
+      flow.amount = amount;
+      flow.done = false;
+      transition(() => {
+        fillFlowSummary();
+        showFlow("flow-method");
+      });
+    });
+
+    $("cancel-method").addEventListener("click", () => transition(() => closeFlow(false)));
+    $("cancel-details").addEventListener("click", () => transition(() => closeFlow(true)));
+    $("confirm-close").addEventListener("click", () => transition(() => closeFlow(false)));
+
+    $("select-bank").addEventListener("click", () => {
+      runAction({
+        task: () => createDeposit(flow.amount),
+        silent: true,
+        successText: "",
+        beforeDove: (result) => {
+          flow.id = result.id;
+          flow.lockId = result.lockId;
+          flow.payment = result.payment;
+          fillDetails();
+          showFlow("flow-details");
+          startFlowTimer(result.windowSeconds);
+          watchDeposit(result.id);
+        }
+      });
+    });
+
+    $("made-transfer").addEventListener("click", () => {
+      transition(() => {
+        clearInterval(flow.timer);
+        fillFlowSummary();
+        showFlow("flow-confirm");
+        startVerification();
+      });
+    });
+
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const value = button.dataset.copy === "amount" ? flow.payment.toFixed(2) : String(settingsNow().accountNumber || "");
+        try {
+          await navigator.clipboard.writeText(value);
+        } catch (error) {
+          console.warn("Could not copy:", error);
+        }
+        const original = button.textContent;
+        button.textContent = "Copied";
+        setTimeout(() => (button.textContent = original), 1200);
+      });
+    });
+
+    /* ---------- AI chat ---------- */
+
+    const chatEl = $("chat");
+    const chat = { started: false, options: [] };
+
+    function defaultFaqs() {
+      const min = money(minDeposit(), currentCurrency(), 0);
+      return [
+        {
+          question: "How to deposit",
+          answer:
+            "1. Open Wallet from the menu.\n2. Enter the amount (minimum " + min + ") and tap Open payment.\n3. Choose Bank Transfer.\n4. Send the exact amount shown, including the kobo, to the account shown before the timer ends.\n5. Tap \"I have made this bank transfer\" and wait. Your wallet is credited automatically once your payment is detected.",
+          order: 1
+        },
+        {
+          question: "My deposit has not been credited",
+          answer:
+            "Check that you sent the exact amount shown, including the kobo, to the account shown. Your wallet is credited automatically once your payment is detected, so give it a few minutes. If it still shows pending, tap Chat with a person and send your payment receipt.",
+          order: 2
+        }
+      ];
+    }
+
+    function faqList() {
+      const remote = (state.faqs || []).filter((f) => f.active !== false && f.question && f.answer).sort(byOrder);
+      return remote.length ? remote : defaultFaqs();
+    }
+
+    function chatAdd(kind, text) {
+      const el = document.createElement("div");
+      el.className = "msg msg-" + kind;
+      el.textContent = text;
+      $("chat-messages").appendChild(el);
+      $("chat-messages").scrollTop = $("chat-messages").scrollHeight;
+    }
+
+    function chatReply(text, delay) {
+      setTimeout(() => chatAdd("bot", text), delay || 500);
+    }
+
+    function renderChatOptions() {
+      chat.options = faqList();
+      $("chat-options").innerHTML =
+        chat.options.map((f, i) => '<button type="button" class="chip" data-q="' + i + '">' + esc(f.question) + "</button>").join("") +
+        '<button type="button" class="chip" data-person="1">Chat with a person</button>';
+    }
+
+    function openChat() {
+      chatEl.classList.add("is-open");
+      chatEl.setAttribute("aria-hidden", "false");
+      if (!chat.started) {
+        chat.started = true;
+        chatAdd("bot", "Hi! I'm repaid's AI support.\nPick an issue below or type your message.");
+      }
+      renderChatOptions();
+    }
+
+    function closeChat() {
+      chatEl.classList.remove("is-open");
+      chatEl.setAttribute("aria-hidden", "true");
+    }
+
+    $("chat-close").addEventListener("click", closeChat);
+
+    $("chat-options").addEventListener("click", (event) => {
+      const chip = event.target.closest(".chip");
+      if (!chip) return;
+      if (chip.dataset.person) {
+        chatAdd("user", "Chat with a person");
+        const url = settingsNow().whatsappUrl;
+        if (url) {
+          window.open(url, "_blank", "noopener");
+          chatReply("Opening WhatsApp so you can chat with a person.");
+        } else {
+          chatReply("A person is not available right now. Please try again later.");
+        }
+        return;
+      }
+      const item = chat.options[Number(chip.dataset.q)];
+      if (!item) return;
+      chatAdd("user", item.question);
+      chatReply(item.answer);
+      chatReply("Anything else? Pick another issue below.", 1100);
+    });
+
+    $("chat-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = $("chat-input");
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = "";
+      chatAdd("user", text);
+      chatReply("Thank you for contacting AI support. Pick any of your issues from the pool below.");
+      renderChatOptions();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeChat();
+    });
+
+    /* ---------- pop-ups after login ---------- */
+
+    const POPUP_KEY = "repaid_popups_seen";
+    let popupIndex = -1;
+    let popupTimer = null;
+
+    function popupArt(kind) {
+      const wrap = (inner) => '<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + inner + "</svg>";
+      if (kind === "chat") {
+        return wrap(
+          '<circle cx="75" cy="75" r="62" fill="#e6edff"/>' +
+            '<circle cx="75" cy="75" r="46" fill="#2a62f0"/>' +
+            '<circle cx="75" cy="75" r="46" fill="none" stroke="#2a62f0" stroke-width="3" style="transform-box:view-box;transform-origin:75px 75px;animation:pulse 1.6s ease-out infinite"/>' +
+            '<g transform="translate(51 51) scale(2)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + ICONS.chat + "</g>" +
+            '<circle cx="116" cy="38" r="9" fill="#22c55e" stroke="#fff" stroke-width="3"/>'
+        );
+      }
+      if (kind === "smile") {
+        return wrap(
+          '<circle cx="75" cy="75" r="68" fill="#e6edff"/>' +
+            '<path d="M25 150C25 112 48 98 75 98C102 98 125 112 125 150Z" fill="#2a62f0"/>' +
+            '<rect x="66" y="82" width="18" height="20" rx="8" fill="#e9c9a8"/>' +
+            '<ellipse cx="75" cy="62" rx="22" ry="25" fill="#f3d4b3"/>' +
+            '<path d="M52 58C50 34 66 28 76 28C90 28 101 36 98 58C94 46 86 42 75 42C64 42 56 46 52 58Z" fill="#1b1b1b"/>' +
+            '<circle cx="67" cy="64" r="2.4" fill="#1b1b1b"/><circle cx="83" cy="64" r="2.4" fill="#1b1b1b"/>' +
+            '<path d="M66 74Q75 83 84 74" fill="none" stroke="#1b1b1b" stroke-width="2.6" stroke-linecap="round"/>' +
+            '<circle cx="120" cy="34" r="5" fill="#e0912f"/><circle cx="26" cy="46" r="4" fill="#e0912f"/>'
+        );
+      }
+      return wrap(
+        '<circle cx="75" cy="75" r="68" fill="#e6edff"/>' +
+          '<g transform="translate(36 36) scale(3.25)" fill="none" stroke="#2a62f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS.gift + "</g>" +
+          '<circle cx="118" cy="40" r="5" fill="#e0912f"/><circle cx="30" cy="104" r="4" fill="#e0912f"/><circle cx="112" cy="114" r="3" fill="#2a62f0"/>'
+      );
+    }
+
+    const POPUPS = [
+      {
+        art: "chat",
+        title: "Our AI is now active",
+        body: "Ask anything about deposits and your account and get answers instantly. Need a real person? You can chat with our team any time.",
+        primary: "Chat with AI",
+        action: "chat"
+      },
+      {
+        art: "smile",
+        title: "Accept payments on your website",
+        body: "No CAC? No problem. Buy our Google Script code and collect deposits from your website for free, forever. No payment gateway needed, and we can help you set it up.",
+        primary: "Get the script",
+        action: "script"
+      },
+      {
+        art: "rewards",
+        title: "Spend more, earn more",
+        body: "The more you spend, the more you earn. Keep spending on repaid and get rewarded for it.",
+        primary: "See rewards",
+        action: "rewards"
+      }
+    ];
+
+    function showPopup(index) {
+      const item = POPUPS[index];
+      if (!item) {
+        hidePopup();
+        return;
+      }
+      popupIndex = index;
+      $("popup-art").innerHTML = popupArt(item.art);
+      $("popup-title").textContent = item.title;
+      $("popup-body").textContent = item.body;
+      $("popup-primary").textContent = item.primary;
+      $("popup-later").textContent = index === POPUPS.length - 1 ? "Close" : "Maybe later";
+      $("popup-count").textContent = index + 1 + " of " + POPUPS.length;
+      $("popup").classList.add("is-open");
+    }
+
+    function hidePopup() {
+      $("popup").classList.remove("is-open");
+      popupIndex = -1;
+    }
+
+    function nextPopup() {
+      if (popupIndex < 0) return;
+      const next = popupIndex + 1;
+      hidePopup();
+      if (next < POPUPS.length) showPopup(next);
+    }
+
+    function schedulePopups() {
+      let seen = false;
+      try {
+        seen = sessionStorage.getItem(POPUP_KEY) === "1";
+      } catch (error) {}
+      if (seen) return;
+      clearTimeout(popupTimer);
+      popupTimer = setTimeout(() => {
+        if (!currentUser || currentPage !== "dashboard" || busy) return;
+        try {
+          sessionStorage.setItem(POPUP_KEY, "1");
+        } catch (error) {}
+        showPopup(0);
+      }, 2800);
+    }
+
+    $("popup-x").addEventListener("click", nextPopup);
+    $("popup-later").addEventListener("click", nextPopup);
+    $("popup").addEventListener("click", (event) => {
+      if (event.target === $("popup")) nextPopup();
+    });
+    $("popup-primary").addEventListener("click", () => {
+      const item = POPUPS[popupIndex];
+      if (!item) return;
+      hidePopup();
+      if (item.action === "chat") {
+        openChat();
+      } else if (item.action === "script") {
+        const url = settingsNow().scriptOfferUrl;
+        if (url) {
+          window.open(url, "_blank", "noopener");
+        } else {
+          runAction({ task: () => Promise.reject({ userMessage: "This offer link has not been set up yet." }), successText: "" });
+        }
+      } else {
+        comingSoon("Rewards are coming soon.");
+      }
+    });
+
+    function resetUi() {
+      clearInterval(flow.timer);
+      clearInterval(flow.verifyTimer);
+      if (flow.unsub) {
+        flow.unsub();
+        flow.unsub = null;
+      }
+      flow.id = null;
+      flow.lockId = null;
+      flow.done = false;
+      hideFlows();
+      closeChat();
+      hidePopup();
+      clearTimeout(popupTimer);
+    }
   </script>
 </body>
 </html>
